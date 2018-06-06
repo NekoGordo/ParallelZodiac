@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Race>
+	<CharacterRace>Mortal</CharacterRace>
+	<MaxLevel>750</MaxLevel>
+	<XPPerLevelMod>125</XPPerLevelMod>
+	<StrengthMod>10</StrengthMod>
+</Race>

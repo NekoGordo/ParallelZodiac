@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Race>
+	<CharacterRace>Immortal</CharacterRace>
+	<MaxLevel>800</MaxLevel>
+	<XPPerLevelMod>150</XPPerLevelMod>
+	<DexterityMod>8</DexterityMod>
+</Race>
