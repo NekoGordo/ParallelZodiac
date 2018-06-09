@@ -176,13 +176,15 @@ public class Combat : MonoBehaviour
     public void AttackBTN()
     {
 
+        Enemy targetEnemy;
+
         Debug.Log("Attacking");
         if (CharacterWithPriority != -1)
         {
 
             if (actingAlly.CanAct)
             {
-                FindEnemies();
+                targetEnemy = FindEnemies();
                 //Characters [ i ].hasAttacked = true;
                 //ally.Attack ();
                 //ally.CanAct = false;
