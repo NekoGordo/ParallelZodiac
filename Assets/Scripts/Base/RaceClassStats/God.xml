@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Race>
+	<CharacterRace>God</CharacterRace>
+	<MaxLevel>900</MaxLevel>
+	<XPPerLevelMod>250</XPPerLevelMod>
+	<IntelligenceMod>18</IntelligenceMod>
+</Race>

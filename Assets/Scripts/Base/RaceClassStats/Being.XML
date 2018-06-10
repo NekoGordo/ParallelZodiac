@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Race>
+	<CharacterRace>Being</CharacterRace>
+	<MaxLevel>1000</MaxLevel>
+	<XPPerLevelMod>175</XPPerLevelMod>
+	<DefenseMod>15</DefenseMod>
+</Race>
