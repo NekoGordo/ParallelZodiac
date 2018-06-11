@@ -22,6 +22,7 @@ public class Combat : MonoBehaviour
     public Enemy enemy;
     public List<GameObject> enemies = new List<GameObject>();
     public List<GameObject> allies = new List<GameObject>();
+    public GameObject BattleMenuPanel;
     int rng;
 
     [SerializeField]
@@ -64,6 +65,8 @@ public class Combat : MonoBehaviour
             allies.Add(tempAllies[i].gameObject);
         }
 
+        BattleMenuPanel = GameObject.FindGameObjectWithTag("BattleMenu");
+
         CombatEnter();
     }
     // this update checks to see if the prioity is -1 if it is then it sets ally to null if its 5 or 4 then it sets it to shiro or binx
@@ -76,23 +79,39 @@ public class Combat : MonoBehaviour
             {
                 actingAlly = GameObject.FindGameObjectWithTag("Shiro").GetComponent<Shiro>();
                 Cursor.lockState = CursorLockMode.None;
+                if (BattleMenuPanel)
+                {
+                    BattleMenuPanel.SetActive(true);
+                }
             }
             else if (CharacterWithPriority == 5)
             {
                 actingAlly = GameObject.FindGameObjectWithTag("Binx").GetComponent<Binx>();
                 Debug.Log("dragons");
                 Cursor.lockState = CursorLockMode.None;
-
+                if (BattleMenuPanel)
+                {
+                    BattleMenuPanel.SetActive(true);
+                }
             }
         }
         else if (CharacterWithPriority == -1)
         {
             actingAlly = null;
             Cursor.lockState = CursorLockMode.Locked;
+
+            if (BattleMenuPanel)
+            {
+                BattleMenuPanel.SetActive(false);
+            }
         }
         else
         {
             Debug.Log("WTF!");
+            if (BattleMenuPanel)
+            {
+                BattleMenuPanel.SetActive(false);
+            }
         }
     }
     //DO NOT CHANGE THIS IT TOOK ME FOREVER TO GET WORKING
@@ -185,15 +204,16 @@ public class Combat : MonoBehaviour
             if (actingAlly.CanAct)
             {
                 targetEnemy = FindEnemies();
-                //Characters [ i ].hasAttacked = true;
-                //ally.Attack ();
-                //ally.CanAct = false;
-                //ally.AttackBar = 0;
-                //ally.PassTurn ();
-                //ally.DisablePlayerControl ();
-                //Characters [ i ].hasAttacked = false;
-                //enemy = null;
-                //return;
+                actingAlly.hasAttacked = true;
+                actingAlly.Attack();
+                actingAlly.CanAct = false;
+                actingAlly.AttackBar = 0;
+                actingAlly.PassTurn();
+                actingAlly.DisablePlayerControl();
+                actingAlly.hasAttacked = false;
+                enemy = null;
+                targetEnemy = null;
+                return;
             }
 
             //None of this is nessecary
@@ -302,13 +322,9 @@ public class Combat : MonoBehaviour
     {
         if (CharacterWithPriority != -1)
         {
-            if (CharacterWithPriority == 4)
+            if (actingAlly.CanAct)
             {
-                // attack with magic if enemy is in the movment grid?
-            }
-            else if (CharacterWithPriority == 5)
-            {
-                //^
+                //TODO: have them attack with magic
             }
         }
     }
