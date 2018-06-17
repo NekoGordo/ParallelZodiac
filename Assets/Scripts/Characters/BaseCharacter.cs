@@ -139,7 +139,7 @@ public class BaseCharacter : MonoBehaviour
     public void DamageEnemy (BaseCharacter enemy, int force) {
 
         //If somehow we got here and we're attacking ourselves, don't
-        if (enemy == this)
+        if (enemy == this || enemy == null)
         {
             return;
         }

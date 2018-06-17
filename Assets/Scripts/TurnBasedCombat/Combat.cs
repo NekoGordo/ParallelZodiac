@@ -204,15 +204,20 @@ public class Combat : MonoBehaviour
             if (actingAlly.CanAct)
             {
                 targetEnemy = FindEnemies();
-                actingAlly.hasAttacked = true;
-                actingAlly.Attack(targetEnemy);
-                actingAlly.CanAct = false;
-                actingAlly.AttackBar = 0;
-                actingAlly.PassTurn();
-                actingAlly.DisablePlayerControl();
-                actingAlly.hasAttacked = false;
-                enemy = null;
-                targetEnemy = null;
+                if (targetEnemy)
+                {
+                    actingAlly.hasAttacked = true;
+               
+                    actingAlly.Attack(targetEnemy);
+
+                    actingAlly.CanAct = false;
+                    actingAlly.AttackBar = 0;
+                    actingAlly.PassTurn();
+                    actingAlly.DisablePlayerControl();
+                    actingAlly.hasAttacked = false;
+                    enemy = null;
+                    targetEnemy = null;
+                }
                 return;
             }
 
