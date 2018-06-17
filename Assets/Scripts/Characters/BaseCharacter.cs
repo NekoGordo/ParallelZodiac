@@ -103,6 +103,7 @@ public class BaseCharacter : MonoBehaviour
 
     void UpdateCanvas()
     {
+        Debug.Log(gameObject.name);
         Canvas.HPBarP.Target = HealthPoints / MaximumHealthPoints;
         Canvas.HPBar.GetComponent<Image>().fillAmount = Canvas.HPBarP.Position;
         Canvas.ATBarP.Target = AttackBar;
@@ -135,13 +136,17 @@ public class BaseCharacter : MonoBehaviour
         }
         EnemyAttacked = false;
     }
-    public void DamageEnemy (int force) {
-        int damage = force; //TODO: Implement actual damage formula
-        HealthPoints -= damage;
+    public void DamageEnemy (BaseCharacter enemy, int force) {
 
-        if ( HealthPoints <= 0 ) {
-            CharacterDeath ();
+        //If somehow we got here and we're attacking ourselves, don't
+        if (enemy == this)
+        {
+            return;
         }
+
+
+        int damage = force; //TODO: Implement actual damage formula
+        enemy.TakeDamage(damage);
     }
 
     void CharacterDeath()

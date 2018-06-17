@@ -205,7 +205,7 @@ public class Combat : MonoBehaviour
             {
                 targetEnemy = FindEnemies();
                 actingAlly.hasAttacked = true;
-                actingAlly.Attack();
+                actingAlly.Attack(targetEnemy);
                 actingAlly.CanAct = false;
                 actingAlly.AttackBar = 0;
                 actingAlly.PassTurn();

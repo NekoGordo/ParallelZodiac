@@ -24,8 +24,10 @@ public class Enemy : BaseCharacter
         if(combat.CharacterWithPriority == -1 ) {
             return;
         }
-        if(hasAttacked)
-            DamageEnemy ( ( int ) AttackDamage );
+        if (hasAttacked)
+        {
+          //TODO figure out how to find the correct player to attack. 
+        }
         //TODO: That code
     }
 

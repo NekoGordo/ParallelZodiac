@@ -80,13 +80,11 @@ public class Ally : BaseCharacter
         Opsive.ThirdPersonController.EventHandler.ExecuteEvent(visual, "OnAllowGameplayInput", true);
     }
 
-    public void Attack()
+    public void Attack(Enemy enemyToAttack)
     {
-        if(combat.CharacterWithPriority ==5 || combat.CharacterWithPriority == 4 ) {
-            return;
-        }
+
         if ( hasAttacked )
-            DamageEnemy ((int)AttackDamage);
+            DamageEnemy (enemyToAttack, (int)AttackDamage);
         //TODO: This code
     }
     public void DamageAlly () {
