@@ -221,55 +221,6 @@ public class Combat : MonoBehaviour
                 return;
             }
 
-            //None of this is nessecary
-            //if (CharacterWithPriority == 4)
-            //{
-            //    for (int i = 0; i < allies.Count; i++)
-            //    {
-            //        for (int j = 0; j < enemies.Count; j++)
-            //        {
-            //            float dist = Vector3.Distance(allies[i].transform.position, enemies[j].transform.position);
-            //            if (dist <= 2.5f)
-            //            {
-            //                FindEnemies();
-            //                //Debug.Log ( allies [ i ].ToString () + " isattacking = " + enemies [ j ].ToString ());
-            //                //Characters [ i ].hasAttacked = true;
-            //                //ally.Attack ();
-            //                //ally.CanAct = false;
-            //                //ally.AttackBar = 0;
-            //                //ally.PassTurn ();
-            //                //ally.DisablePlayerControl ();
-            //                //Characters [ i ].hasAttacked = false;
-            //                //enemy = null;
-            //                //return;
-
-            //            }
-            //        }
-            //    }
-            //}
-            //else if (CharacterWithPriority == 5)
-            //{
-            //    for (int i = 0; i < allies.Count; i++)
-            //    {
-            //        for (int j = 0; j < enemies.Count; j++)
-            //        {
-            //            float dist = Vector3.Distance(allies[i].transform.position, enemies[j].transform.position);
-            //            if (dist <= 2.5)
-            //            {
-
-            //                //Debug.Log ( allies[i].ToString() + " is attacking = " + enemies [ j ].ToString () );
-            //                //Characters [ i ].hasAttacked = true;
-            //                //ally.Attack ();
-            //                //ally.CanAct = false;
-            //                //ally.AttackBar = 0;
-            //                //ally.PassTurn ();
-            //                //ally.DisablePlayerControl ();
-            //                //Characters [ i ].hasAttacked = false;
-            //                //return;
-            //            }
-            //        }
-            //    }
-            //}
         }
     }
 
