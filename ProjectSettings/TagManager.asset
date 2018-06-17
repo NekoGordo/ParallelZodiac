@@ -45,16 +45,16 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ledge
+  - Climb
+  - Moveable
+  - Vault
+  - Cover
+  - CharacterCollider
+  - VisualEffect
+  - MovingPlatform
+  - Enemy
+  - Player
   m_SortingLayers:
   - name: Default
     uniqueID: 0
