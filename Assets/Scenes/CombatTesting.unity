@@ -242,6 +242,10 @@ MonoBehaviour:
   enemies: []
   allies: []
   BattleMenuPanel: {fileID: 0}
+  MagicMenuPanel: {fileID: 0}
+  Spell1button: {fileID: 0}
+  Spell2button: {fileID: 0}
+  Spell3button: {fileID: 0}
   sphereCastRange: 1.5
 --- !u!1001 &1075459612
 Prefab:
@@ -605,12 +609,17 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114602816777814272, guid: aa3e4bcba7dd22546b5710323f9ab1ba,
+    - target: {fileID: 114837874262063168, guid: aa3e4bcba7dd22546b5710323f9ab1ba,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1035427122}
-    - target: {fileID: 114837874262063168, guid: aa3e4bcba7dd22546b5710323f9ab1ba,
+    - target: {fileID: 114827829159398138, guid: aa3e4bcba7dd22546b5710323f9ab1ba,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1035427122}
+    - target: {fileID: 114082579653046348, guid: aa3e4bcba7dd22546b5710323f9ab1ba,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -620,16 +629,28 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2117350443}
-    - target: {fileID: 114147052244013250, guid: aa3e4bcba7dd22546b5710323f9ab1ba,
+    - target: {fileID: 114022665963259850, guid: aa3e4bcba7dd22546b5710323f9ab1ba,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1035427122}
-    - target: {fileID: 114628651476835372, guid: aa3e4bcba7dd22546b5710323f9ab1ba,
+    - target: {fileID: 114251755691689126, guid: aa3e4bcba7dd22546b5710323f9ab1ba,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1035427122}
+    - target: {fileID: 1777961050142438, guid: aa3e4bcba7dd22546b5710323f9ab1ba, type: 2}
+      propertyPath: m_TagString
+      value: Spell1Slot
+      objectReference: {fileID: 0}
+    - target: {fileID: 1223538525841346, guid: aa3e4bcba7dd22546b5710323f9ab1ba, type: 2}
+      propertyPath: m_TagString
+      value: Spell2Slot
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953350654696382, guid: aa3e4bcba7dd22546b5710323f9ab1ba, type: 2}
+      propertyPath: m_TagString
+      value: Spell3Slot
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa3e4bcba7dd22546b5710323f9ab1ba, type: 2}
   m_IsPrefabParent: 0
