@@ -170,8 +170,8 @@ public class Combat : MonoBehaviour
                     float enemy1Distance = Vector3.Distance(actingAlly.transform.position, enemy.gameObject.transform.position);
                     float enemy2Distance = Vector3.Distance(actingAlly.transform.position, CompareEnemy.gameObject.transform.position);
 
-                    Debug.Log($"Compare enemy {CompareEnemy.gameObject.name} is {enemy2Distance} units away");
-                    Debug.Log($"Regular enemy {enemy.gameObject.name} is {enemy1Distance} units away");
+               //     Debug.Log($"Compare enemy {CompareEnemy.gameObject.name} is {enemy2Distance} units away");
+               //     Debug.Log($"Regular enemy {enemy.gameObject.name} is {enemy1Distance} units away");
 
                     if (enemy2Distance < enemy1Distance)
                     {
