@@ -23,6 +23,20 @@ public class Combat : MonoBehaviour
     public List<GameObject> enemies = new List<GameObject>();
     public List<GameObject> allies = new List<GameObject>();
     public GameObject BattleMenuPanel;
+    public GameObject MagicMenuPanel;
+
+    //TODO: Have these be loaded into the scene dynamically
+    public IMagicAttack spell1 = new TestFireMagic();
+    public IMagicAttack spell2 = new TestFireMagic();
+    public IMagicAttack spell3 = new TestFireMagic();
+
+    [SerializeField]
+    private GameObject Spell1button;
+    [SerializeField]
+    private GameObject Spell2button;
+    [SerializeField]
+    private GameObject Spell3button;
+
     int rng;
 
     [SerializeField]
@@ -66,6 +80,18 @@ public class Combat : MonoBehaviour
         }
 
         BattleMenuPanel = GameObject.FindGameObjectWithTag("BattleMenu");
+        MagicMenuPanel = GameObject.FindGameObjectWithTag("MagicMenu");
+
+        Spell1button = GameObject.FindGameObjectWithTag("Spell1Slot");
+        Spell2button = GameObject.FindGameObjectWithTag("Spell2Slot");
+        Spell3button = GameObject.FindGameObjectWithTag("Spell3Slot");
+
+        //Dynamically change the spells in the menu to the equipped spells
+        Spell1button.GetComponentInChildren<Text>().text = spell1.Load(Spell1button.GetComponent<Button>());
+        Spell2button.GetComponentInChildren<Text>().text = spell2.Load(Spell2button.GetComponent<Button>());
+        Spell3button.GetComponentInChildren<Text>().text = spell3.Load(Spell3button.GetComponent<Button>());
+
+        MagicMenuPanel.SetActive(false);
 
         CombatEnter();
     }
@@ -281,8 +307,21 @@ public class Combat : MonoBehaviour
             if (actingAlly.CanAct)
             {
                 //TODO: have them attack with magic
+                BattleMenuPanel.SetActive(false);
+                MagicMenuPanel.SetActive(true);
+
+                spell1.SetPlayer(actingAlly);
+                spell2.SetPlayer(actingAlly);
+                spell3.SetPlayer(actingAlly);
+                
             }
         }
+    }
+
+    public void ReturnToMainMenu()
+    {
+        BattleMenuPanel.SetActive(true);
+        MagicMenuPanel.SetActive(false);
     }
 
     //TODO: Create a BaseCharacter Factory, use it instead of these
