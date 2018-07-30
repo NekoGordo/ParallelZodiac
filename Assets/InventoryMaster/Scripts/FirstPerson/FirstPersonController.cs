@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
@@ -10,6 +9,7 @@ public class FirstPersonController : MonoBehaviour
     public float mouseSensitivity = 2.0f;
     public float verticalAngleLimit = 60.0f;
     public float jumpSpeed = 5f;
+
     float verticalRotation = 0;
 
     GameObject _inventory;
@@ -18,7 +18,7 @@ public class FirstPersonController : MonoBehaviour
     GameObject _dropBox;
     public bool showInventory = false;
     float verticalVelocity = 0;
-    GameObject Inven;
+
     GameObject inventory;
     GameObject craftSystem;
     GameObject characterSystem;
@@ -29,8 +29,6 @@ public class FirstPersonController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Inven = GameObject.FindGameObjectWithTag ( "MainInventory" );
-
         firstPersonCamera = Camera.main.GetComponent<Camera>();
         characterController = GetComponent<CharacterController>();
 
@@ -76,11 +74,6 @@ public class FirstPersonController : MonoBehaviour
             speed = transform.rotation * speed;
 
             characterController.Move(speed * Time.deltaTime);
-        }
-        if ( Input.GetKeyDown ( KeyCode.I )  ) {
-            showInventory = true;
-           
-            Inven.SetActive (true);
         }
 
     }
