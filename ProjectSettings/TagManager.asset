@@ -22,6 +22,18 @@ TagManager:
   - Shiro
   - Binx
   - Enemy
+  - Canvas
+  - MainInventory
+  - Panel
+  - Slots
+  - Slot
+  - CraftSystem
+  - Item
+  - DraggingItem
+  - ResultSlot
+  - ItemIcon
+  - Hotbar
+  - EquipmentSystem
   layers:
   - Default
   - TransparentFX
