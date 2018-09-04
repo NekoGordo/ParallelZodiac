@@ -17,32 +17,30 @@ public class Binx : Ally {
 
     private void Awake()
     {
-        BasicType = "Ally";
         cap = new Capricorn();
         shapeshifter = new ShapeshifterStats();
-        Name = "Binx";
-        Force = shapeshifter.Force + cap.Force + CBForce;
-        Vitality = shapeshifter.Vitality + cap.Vitality + CBVitality;
-        Agility = shapeshifter.Agility + cap.Agility + CBAgility;
-        Fortiude = shapeshifter.Fortiude + cap.Fortitude + CBFortitude;
-        Intellect = shapeshifter.Intellect + cap.Intellect + CBIntellect;
-        Rationale = shapeshifter.Rationale + cap.Rational + CBRational;
-        Charisma = shapeshifter.Charisma + cap.Charisma + CBCharima;
-        MaximumHealthPoints = (Vitality + Fortiude) / 2;
-        HealthPoints = MaximumHealthPoints;
-        AbilityPoints = (Force + Intellect) / 2;
-        MoralPoints = 100;
-        TravelStamina = (Vitality / 2) + ((Fortiude / 4) / Rationale);
-        Defence = Vitality;
-        AttackDamage = Force;
-        AttackSpeed = Agility;
-        MagicDefence = Rationale;
+        myStats.Name = "Binx";
+        myStats.Force = shapeshifter.Force + cap.Force + CBForce;
+        myStats.Vitality = shapeshifter.Vitality + cap.Vitality + CBVitality;
+        myStats.Agility = shapeshifter.Agility + cap.Agility + CBAgility;
+        myStats.Fortiude = shapeshifter.Fortiude + cap.Fortitude + CBFortitude;
+        myStats.Intellect = shapeshifter.Intellect + cap.Intellect + CBIntellect;
+        myStats.Rationale = shapeshifter.Rationale + cap.Rational + CBRational;
+        myStats.Charisma = shapeshifter.Charisma + cap.Charisma + CBCharima;
+        myStats.MaximumHealthPoints = (myStats.Vitality + myStats.Fortiude) / 2;
+        myStats.HealthPoints = myStats.MaximumHealthPoints;
+        myStats.AbilityPoints = (myStats.Force + myStats.Intellect) / 2;
+        myStats.MoralPoints = 100;
+        myStats.TravelStamina = (myStats.Vitality / 2) + ((myStats.Fortiude / 4) / myStats.Rationale);
+        myStats.Defence = myStats.Vitality;
+        myStats.AttackDamage = myStats.Force;
+        myStats.AttackSpeed = myStats.Agility;
+        myStats.MagicDefence = myStats.Rationale;
 
-        AttackBar = 0 / 100;
 
-        HealthPoints = MaximumHealthPoints;
+        myStats.HealthPoints = myStats.MaximumHealthPoints;
         //clamps it
-        HealthPoints = Mathf.Clamp(HealthPoints, 0, MaximumHealthPoints);
+        myStats.HealthPoints = Mathf.Clamp(myStats.HealthPoints, 0, myStats.MaximumHealthPoints);
 
         // AP bar increasre by timesing agility by time.deltatime
         // divide delta time * agility by 32 

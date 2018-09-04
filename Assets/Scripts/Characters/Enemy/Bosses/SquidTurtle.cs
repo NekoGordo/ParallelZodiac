@@ -26,29 +26,29 @@ public class SquidTurtle : Enemy {
 
         mon = new MonsterStat();
 
-        Name = "SquidTurtle";
-        Force = mon.Force + MBForce;
-        Vitality = mon.Vitality + MBVitality;
-        Agility = mon.Agility + MBAgility;
-        Fortiude = mon.Fortiude + MBFortitude;
-        Intellect = mon.Intellect + MBIntellect;
-        Rationale = mon.Rationale + MBRational;
-        Charisma = mon.Charisma + MBCharima;
+        myStats.Name = "SquidTurtle";
+        myStats.Force = mon.Force + MBForce;
+        myStats.Vitality = mon.Vitality + MBVitality;
+        myStats.Agility = mon.Agility + MBAgility;
+        myStats.Fortiude = mon.Fortiude + MBFortitude;
+        myStats.Intellect = mon.Intellect + MBIntellect;
+        myStats.Rationale = mon.Rationale + MBRational;
+        myStats.Charisma = mon.Charisma + MBCharima;
 
-        HealthPoints = (Vitality + Fortiude + HPMod) / 2;
-        AbilityPoints = (Force + Intellect + APMod) / 2;
-        Defence = Vitality + DFMod;
-        AttackDamage = Force + ADMod;
-        AttackSpeed = Agility;
-        MagicDefence = Rationale + MDMod;
+        myStats.HealthPoints = (myStats.Vitality + myStats.Fortiude + HPMod) / 2;
+        myStats.AbilityPoints = (myStats.Force + myStats.Intellect + APMod) / 2;
+        myStats.Defence = myStats.Vitality + DFMod;
+        myStats.AttackDamage = myStats.Force + ADMod;
+        myStats.AttackSpeed = myStats.Agility;
+        myStats.MagicDefence = myStats.Rationale + MDMod;
 
-        AttackBar = 0 / 100;
+        myStats.AttackBar = 0 / 100;
 
         //HPthing
-        MaximumHealthPoints = HealthPoints;
-        HealthPoints = MaximumHealthPoints;
+        myStats.MaximumHealthPoints = myStats.HealthPoints;
+        myStats.HealthPoints = myStats.MaximumHealthPoints;
         //clamps it
-        HealthPoints = Mathf.Clamp(HealthPoints, 0, MaximumHealthPoints);
+        myStats.HealthPoints = Mathf.Clamp(myStats.HealthPoints, 0, myStats.MaximumHealthPoints);
 
 
         // AP bar increasre by timesing agility by time.deltatime
