@@ -6,31 +6,7 @@ using UnityEngine;
 //TODO: Stop inheriting from mono. Need to get rid of the canvas instantiate
 public class BaseCharacter : MonoBehaviour
 {
-
-    public string BasicType;    //TODO: ???
-
-    //TODO: Make a class/struct for these? This needs refactoring
-    public string Name;
-    public int Force;
-    public int Vitality;
-    public int Agility;
-    public int Fortiude;
-    public int Intellect;
-    public int Rationale;
-    public int Charisma;
-
-    public float AbilityPoints; //abillity points(magic damage)
-    public float AttackDamage; //attack damage
-    public float MoralPoints; //moral points
-    public float Defence;
-    public float MagicDefence; //magic deffence
-    public float AttackSpeed; //attack speed
-    public float TravelStamina; //helps with trvels
-    public float HealthPoints;
-    public float MaximumHealthPoints = 0;
-    public float MaximumAttackBar;
-    public float MaximumAbilityPoints = 0;
-    public float AttackBar;
+    public CharacterStats myStats;
 
     float AttackSpeedDivider = 64f; //TODO: Why 64?
 
@@ -96,7 +72,7 @@ public class BaseCharacter : MonoBehaviour
 
     public bool IsDead()
     {   
-        if (HealthPoints == 0)
+        if (myStats.HealthPoints == 0)
             return true;
         return false;
     }
@@ -104,9 +80,9 @@ public class BaseCharacter : MonoBehaviour
     void UpdateCanvas()
     {
         Debug.Log(gameObject.name);
-        Canvas.HPBarP.Target = HealthPoints / MaximumHealthPoints;
+        Canvas.HPBarP.Target = myStats.HealthPoints / myStats.MaximumHealthPoints;
         Canvas.HPBar.GetComponent<Image>().fillAmount = Canvas.HPBarP.Position;
-        Canvas.ATBarP.Target = AttackBar;
+        Canvas.ATBarP.Target = myStats.AttackBar;
         Canvas.ATBar.GetComponent<Image>().fillAmount = Canvas.ATBarP.Position;
         //TODO: Is this always the main camera?
         Canvas.canvas.transform.LookAt(Camera.main.transform.position);
@@ -115,22 +91,22 @@ public class BaseCharacter : MonoBehaviour
 
     void UpdateBar()
     {
-        AttackBar += (Time.deltaTime * AttackSpeed) / AttackSpeedDivider;
-        if (AttackBar >= 1)
+        myStats.AttackBar += (Time.deltaTime *myStats. AttackSpeed) / AttackSpeedDivider;
+        if (myStats.AttackBar >= 1)
         {
             CanAct = true;
             // hasAttacked=attackChosen !=null ? true : false;
             // attackChosen = null;
-            AttackBar = hasAttacked ? 0 : 1;
+            myStats.AttackBar = hasAttacked ? 0 : 1;
         }
     }
 
     public void TakeDamage(int force)
     {
         int damage = force; //TODO: Implement actual damage formula
-        HealthPoints -= damage;
+        myStats.HealthPoints -= damage;
 
-        if (HealthPoints <= 0)
+        if (myStats.HealthPoints <= 0)
         {
             CharacterDeath();
         }
@@ -151,12 +127,12 @@ public class BaseCharacter : MonoBehaviour
 
     void CharacterDeath()
     {
-        HealthPoints = 0;
-        AttackBar = 0;
+        myStats.HealthPoints = 0;
+        myStats.AttackBar = 0;
 
         UpdateCanvas();
 
-        Debug.Log("Character Dead: " + (string.IsNullOrEmpty(Name) ? "Unknown" : Name));
+        Debug.Log("Character Dead: " + (string.IsNullOrEmpty(myStats.Name) ? "Unknown" : myStats.Name));
         //TODO: Play death anim, anything else that needs to happen
     }
     
