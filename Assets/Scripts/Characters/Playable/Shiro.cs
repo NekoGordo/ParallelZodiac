@@ -23,38 +23,37 @@ public class Shiro : Ally {
     private void Awake()
     {
         
-        BasicType = "Ally";
         aqua = new Aquarius();
         ba = new BaseAttack();
         assassin = new AssassinStats();
         exp = new Experience("Being");
-        MaximumAttackBar = 100 / 100;
-        Name = "Shiro";
-        Force = assassin.Force + aqua.Force + CBForce;
-        Vitality = assassin.Vitality + aqua.Vitality + CBVitality;
-        Agility = assassin.Agility + aqua.Agility + CBAgility;
-        Fortiude = assassin.Fortiude + aqua.Fortitude + CBFortitude;
-        Intellect = assassin.Intellect + aqua.Intellect + CBIntellect;
-        Rationale = assassin.Rationale + aqua.Rational + CBRational;
-        Charisma = assassin.Charisma + aqua.Charisma + CBCharima;
-        MaximumHealthPoints = (Vitality + Fortiude) / 2;
-        HealthPoints = MaximumHealthPoints;
-        AbilityPoints = (Force + Intellect) / 2;
-        MoralPoints = 100;
-        TravelStamina = (Vitality / 2) + ((Fortiude / 4) / Rationale);
-        Defence = Vitality;
-        AttackDamage = Force;// this is for the damge
-        AttackSpeed = Agility;
-        MagicDefence = Rationale;
+        myStats.MaximumAttackBar = 100 / 100;
+        myStats.Name = "Shiro";
+        myStats.Force = assassin.Force + aqua.Force + CBForce;
+        myStats.Vitality = assassin.Vitality + aqua.Vitality + CBVitality;
+        myStats.Agility = assassin.Agility + aqua.Agility + CBAgility;
+        myStats.Fortiude = assassin.Fortiude + aqua.Fortitude + CBFortitude;
+        myStats.Intellect = assassin.Intellect + aqua.Intellect + CBIntellect;
+        myStats.Rationale = assassin.Rationale + aqua.Rational + CBRational;
+        myStats.Charisma = assassin.Charisma + aqua.Charisma + CBCharima;
+        myStats.MaximumHealthPoints = (myStats.Vitality + myStats.Fortiude) / 2;
+        myStats.HealthPoints = myStats.MaximumHealthPoints;
+        myStats.AbilityPoints = (myStats.Force + myStats.Intellect) / 2;
+        myStats.MoralPoints = 100;
+        myStats.TravelStamina = (myStats.Vitality / 2) + ((myStats.Fortiude / 4) / myStats.Rationale);
+        myStats.Defence = myStats.Vitality;
+        myStats.AttackDamage = myStats.Force;// this is for the damge
+        myStats.AttackSpeed = myStats.Agility;
+        myStats.MagicDefence = myStats.Rationale;
 
         //HPthing
-        HealthPoints = MaximumHealthPoints;
-        HealthPoints = Mathf.Clamp(HealthPoints, 0, MaximumHealthPoints);
+        myStats.HealthPoints = myStats.MaximumHealthPoints;
+        myStats.HealthPoints = Mathf.Clamp(myStats.HealthPoints, 0, myStats.MaximumHealthPoints);
 
         //i dont know if this is ment to be in this script
-        ba.Damage = Random.Range(0, (int)AttackDamage) + 1;//this works out the random percent of the damage
+        ba.Damage = Random.Range(0, (int)myStats.AttackDamage) + 1;//this works out the random percent of the damage
 
-        AttackBar = Mathf.Clamp(AttackBar, 0, MaximumAttackBar);
+        myStats.AttackBar = Mathf.Clamp(myStats.AttackBar, 0, myStats.MaximumAttackBar);
         // AP bar increasre by timesing agility by time.deltatime
         // divide delta time * agility by 32    
     }

@@ -148,7 +148,7 @@ public class Combat : MonoBehaviour
             if (CharacterWithPriority == 4)
             {
                 actingAlly.CanAct = false;
-                actingAlly.AttackBar = 0;
+                actingAlly.myStats.AttackBar = 0;
                 actingAlly.PassTurn();
                 actingAlly.DisablePlayerControl();
                 return;
@@ -156,7 +156,7 @@ public class Combat : MonoBehaviour
             else if (CharacterWithPriority == 5)
             {
                 actingAlly.CanAct = false;
-                actingAlly.AttackBar = 0;
+                actingAlly.myStats.AttackBar = 0;
                 actingAlly.PassTurn();
                 actingAlly.DisablePlayerControl();
                 return;
@@ -237,7 +237,7 @@ public class Combat : MonoBehaviour
                     actingAlly.Attack(targetEnemy);
 
                     actingAlly.CanAct = false;
-                    actingAlly.AttackBar = 0;
+                    actingAlly.myStats.AttackBar = 0;
                     actingAlly.PassTurn();
                     actingAlly.DisablePlayerControl();
                     actingAlly.hasAttacked = false;
@@ -262,7 +262,7 @@ public class Combat : MonoBehaviour
                 if (rng > 35)
                 {
                     actingAlly.CanAct = false;
-                    actingAlly.AttackBar = 0;
+                    actingAlly.myStats.AttackBar = 0;
                     actingAlly.PassTurn();
                     actingAlly.DisablePlayerControl();
                     Application.LoadLevel("OverworldTest");
@@ -270,7 +270,7 @@ public class Combat : MonoBehaviour
                 else if (rng < 35)
                 {
                     actingAlly.CanAct = false;
-                    actingAlly.AttackBar = 0;
+                    actingAlly.myStats.AttackBar = 0;
                     actingAlly.PassTurn();
                     actingAlly.DisablePlayerControl();
                     return;
@@ -281,7 +281,7 @@ public class Combat : MonoBehaviour
                 if (rng > 60)
                 {
                     actingAlly.CanAct = false;
-                    actingAlly.AttackBar = 0;
+                    actingAlly.myStats.AttackBar = 0;
                     actingAlly.PassTurn();
                     actingAlly.DisablePlayerControl();
                     Application.LoadLevel("OverworldTest");
@@ -289,7 +289,7 @@ public class Combat : MonoBehaviour
                 else if (rng < 60)
                 {
                     actingAlly.CanAct = false;
-                    actingAlly.AttackBar = 0;
+                    actingAlly.myStats.AttackBar = 0;
                     actingAlly.PassTurn();
                     actingAlly.DisablePlayerControl();
                     return;

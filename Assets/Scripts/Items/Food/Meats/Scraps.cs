@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scraps : BaseMeatItem{
-    
-    public Scraps () {
-
-        MeatName = "Scraps";
-        ItemPrice = 35;
-        FlavourText = "a small amount of meat that will hardly fill your hunger";
-        ItemWorth = "Common";
-    }
-
+public class Scraps : MonoBehaviour {
+	BaseMeatItem meat;
+	public string name = "";
+	public int price;
+	public string desc = "";
+	public string rairty = "";
+	// Use this for initialization
+	void Start () {
+	meat.MeatName = name;
+	FlavourText = desc;
+	ItemWorth = rairty;
+	ItemPrice = price;
+	}
+	
 }
