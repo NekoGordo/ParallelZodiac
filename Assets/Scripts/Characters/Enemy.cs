@@ -14,7 +14,7 @@ public class Enemy : BaseCharacter
     {
         Attack();
         CanAct = false;
-        AttackBar = 0f;
+        myStats.AttackBar = 0f;
 
         return;
     }
@@ -33,7 +33,7 @@ public class Enemy : BaseCharacter
 
     public void EnemyTakeDamage () {
     if ( EnemyAttacked )
-        TakeDamage ( ( int ) AttackDamage );
+        TakeDamage ( ( int ) myStats.AttackDamage );
     }
 
     protected void CreateSignNumber()

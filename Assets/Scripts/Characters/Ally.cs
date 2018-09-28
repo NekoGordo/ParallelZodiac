@@ -84,10 +84,10 @@ public class Ally : BaseCharacter
     {
 
         if ( hasAttacked )
-            DamageEnemy (enemyToAttack, (int)AttackDamage);
+            DamageEnemy (enemyToAttack, (int)myStats.AttackDamage);
         //TODO: This code
     }
     public void DamageAlly () {
-        TakeDamage ((int)AttackDamage);
+        TakeDamage ((int)myStats.AttackDamage);
     }
 }
