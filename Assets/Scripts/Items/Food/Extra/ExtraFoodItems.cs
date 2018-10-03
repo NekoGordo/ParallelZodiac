@@ -2,40 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EggIttem : MonoBehaviour {
-    BaseEggItem egg;
-    public string Ename;
+public class ExtraFoodItems : MonoBehaviour {
+    BaseExtraItem extra;
+    public string EIname;
     public int price;
     public string desc;
     public string rarity;
-    public bool dEgg;
-    public string dragonType;
+    public string FdType;
     public GameObject player;
     public float ObjDist;
 
     // Use this for initialization
     void Awake () {
-        egg = new BaseEggItem ();
+        extra = new BaseExtraItem ();
         player = GameObject.FindGameObjectWithTag ( "Player" );
-        egg.EggName = Ename;
-        egg.FlavourText = desc;
-        egg.ItemPrice = price;
-        egg.Itemrarity = rarity;
-        egg.iSDragon = dEgg;
-        if(dEgg == true ) {
-            egg.WhichDragon = dragonType;
-        }
+        extra.ItemName = EIname;
+        extra.FlavourText = desc;
+        extra.ItemPrice = price;
+        extra.Itemrarity = rarity;
+  //      extra.FoodType = FdType;
     }
 
     void FixedUpdate () {
         ObjDist = Vector3.Distance ( this.gameObject.transform.position, player.transform.position );
         if ( ObjDist < 2.5 ) {
             if ( Input.GetKeyDown ( KeyCode.E ) ) {
-                if ( dEgg ) {
-                    Debug.Log ( "this is a dragons egg" );
-                } else {
-                    Debug.Log ( "hay theres a item" );
-                }
+                Debug.Log ( "hay theres a item" );
+
             }
         } else if ( ObjDist > 2.6 ) {
             if ( Input.GetKeyDown ( KeyCode.E ) ) {
