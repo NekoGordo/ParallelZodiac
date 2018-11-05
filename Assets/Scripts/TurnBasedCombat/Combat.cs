@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -38,6 +39,7 @@ public class Combat : MonoBehaviour
     private GameObject Spell3button;
 
     int rng;
+    public bool InCombat;
 
     [SerializeField]
     private float sphereCastRange;
@@ -52,6 +54,15 @@ public class Combat : MonoBehaviour
         //for ( int i = 0; i < Characters.Count; i++ ) {
         // whats this for? 
         //}
+        Scene CurrentScene = SceneManager.GetActiveScene ();
+        string SceneName = CurrentScene.name;
+        if (SceneName == "OverworldTest" ) {
+            InCombat = false;
+            
+        }else if(SceneName == "CombatTesting" ) {
+            InCombat = true;
+        }
+        
 
         CharacterWithPriority = -1;
 
@@ -98,45 +109,37 @@ public class Combat : MonoBehaviour
     // this update checks to see if the prioity is -1 if it is then it sets ally to null if its 5 or 4 then it sets it to shiro or binx
     void Update()
     {
-        if (CharacterWithPriority != -1)
-        {
-            // needs fixing to work with tag of Player this is a temporay fix
-            if (CharacterWithPriority == 4)
-            {
-                actingAlly = GameObject.FindGameObjectWithTag("Shiro").GetComponent<Shiro>();
-                Cursor.lockState = CursorLockMode.None;
-                if (BattleMenuPanel)
-                {
-                    BattleMenuPanel.SetActive(true);
+        if ( InCombat == false ) {
+            return;
+        } else if ( InCombat == true ) {
+            if ( CharacterWithPriority != -1 ) {
+                // needs fixing to work with tag of Player this is a temporay fix
+                if ( CharacterWithPriority == 4 ) {
+                    actingAlly = GameObject.FindGameObjectWithTag ( "Shiro" ).GetComponent<Shiro> ();
+                    Cursor.lockState = CursorLockMode.None;
+                    if ( BattleMenuPanel ) {
+                        BattleMenuPanel.SetActive ( true );
+                    }
+                } else if ( CharacterWithPriority == 5 ) {
+                    actingAlly = GameObject.FindGameObjectWithTag ( "Binx" ).GetComponent<Binx> ();
+                    Debug.Log ( "dragons" );
+                    Cursor.lockState = CursorLockMode.None;
+                    if ( BattleMenuPanel ) {
+                        BattleMenuPanel.SetActive ( true );
+                    }
                 }
-            }
-            else if (CharacterWithPriority == 5)
-            {
-                actingAlly = GameObject.FindGameObjectWithTag("Binx").GetComponent<Binx>();
-                Debug.Log("dragons");
-                Cursor.lockState = CursorLockMode.None;
-                if (BattleMenuPanel)
-                {
-                    BattleMenuPanel.SetActive(true);
-                }
-            }
-        }
-        else if (CharacterWithPriority == -1)
-        {
-            actingAlly = null;
-            Cursor.lockState = CursorLockMode.Locked;
+            } else if ( CharacterWithPriority == -1 ) {
+                actingAlly = null;
+                Cursor.lockState = CursorLockMode.Locked;
 
-            if (BattleMenuPanel)
-            {
-                BattleMenuPanel.SetActive(false);
-            }
-        }
-        else
-        {
-            Debug.Log("WTF!");
-            if (BattleMenuPanel)
-            {
-                BattleMenuPanel.SetActive(false);
+                if ( BattleMenuPanel ) {
+                    BattleMenuPanel.SetActive ( false );
+                }
+            } else {
+                Debug.Log ( "WTF!" );
+                if ( BattleMenuPanel ) {
+                    BattleMenuPanel.SetActive ( false );
+                }
             }
         }
     }
@@ -461,13 +464,13 @@ public class Combat : MonoBehaviour
         Debug.Log(charName + " Is able to attack at time " + Time.time);
     }
 
-    void CombatEnter()
+   public void CombatEnter()
     {
-        //TODO: implement combat enter condition
+        SceneManager.LoadScene ( "CombatTesting" );
     }
 
     void CombatExit()
     {
-        //TODO: implement combat end condition
+        SceneManager.LoadScene ( "OverworldTest" );
     }
 }
