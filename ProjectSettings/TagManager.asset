@@ -34,6 +34,10 @@ TagManager:
   - ItemIcon
   - Hotbar
   - EquipmentSystem
+  - MagicMenu
+  - Spell1Slot
+  - Spell2Slot
+  - Spell3Slot
   layers:
   - Default
   - TransparentFX

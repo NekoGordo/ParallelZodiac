@@ -103,7 +103,7 @@ public class Combat : MonoBehaviour
         Spell3button.GetComponentInChildren<Text>().text = spell3.Load(Spell3button.GetComponent<Button>());
 
         MagicMenuPanel.SetActive(false);
-
+        
         CombatEnter();
     }
     // this update checks to see if the prioity is -1 if it is then it sets ally to null if its 5 or 4 then it sets it to shiro or binx
@@ -268,7 +268,7 @@ public class Combat : MonoBehaviour
                     actingAlly.myStats.AttackBar = 0;
                     actingAlly.PassTurn();
                     actingAlly.DisablePlayerControl();
-                    Application.LoadLevel("OverworldTest");
+                    SceneManager.LoadScene("OverworldTest");
                 }
                 else if (rng < 35)
                 {
@@ -287,7 +287,7 @@ public class Combat : MonoBehaviour
                     actingAlly.myStats.AttackBar = 0;
                     actingAlly.PassTurn();
                     actingAlly.DisablePlayerControl();
-                    Application.LoadLevel("OverworldTest");
+                    SceneManager.LoadScene("OverworldTest");
                 }
                 else if (rng < 60)
                 {

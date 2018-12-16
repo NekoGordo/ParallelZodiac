@@ -5,6 +5,7 @@ using UnityEngine;
 public class InputTesting : MonoBehaviour
 {
     public bool showCameraAngles;
+    public bool isSwimming;
 
     [SerializeField]
     float horizontalMovement = 0;

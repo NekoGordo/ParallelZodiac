@@ -22,7 +22,7 @@ public class ArmourEnchancment : MonoBehaviour {
         ArEnchancment.Itemrarity = rarity;
     }
 
-       void FixedUpdate () {
+    /*   void FixedUpdate () {
            ObjDist = Vector3.Distance ( this.gameObject.transform.position, player.transform.position );
            if ( ObjDist < 2.5 ) {
                if ( Input.GetKeyDown ( KeyCode.E ) ) {
@@ -34,5 +34,5 @@ public class ArmourEnchancment : MonoBehaviour {
                    Debug.Log ( "notting here" );
                }
            }
-       }
+       }*/
 }
