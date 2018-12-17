@@ -7,6 +7,7 @@ public class OWBattleMovement : MonoBehaviour {
 
     NavMeshAgent navMeshAgent;
     NavMeshPath navpath;
+    public float RestTime;
     public float TimeForNewPath;
     Vector3 target;
     bool Routine;
@@ -40,6 +41,7 @@ public class OWBattleMovement : MonoBehaviour {
             Debug.Log ( "no path" );
             validpath = navMeshAgent.CalculatePath ( target, navpath );
         }
+        yield return new WaitForSeconds ( RestTime);
         Routine = false;
     }
 
