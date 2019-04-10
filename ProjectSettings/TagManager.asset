@@ -38,6 +38,7 @@ TagManager:
   - Spell1Slot
   - Spell2Slot
   - Spell3Slot
+  - Comp
   layers:
   - Default
   - TransparentFX

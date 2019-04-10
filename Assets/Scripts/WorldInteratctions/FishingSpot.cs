@@ -30,7 +30,7 @@ public class FishingSpot : MonoBehaviour {
 
     private void OnTriggerStay ( Collider other ) {
         if (other.name == "Player") {
-            if ( IsAbleToFish && Input.GetKeyDown ( KeyCode.L ) && GameObject.Find ( "Player" ).GetComponent<InputTesting> ().isSwimming == false ) {
+            if ( IsAbleToFish && Input.GetKeyDown ( KeyCode.L ) && GameObject.Find ( "Player" ).GetComponent<IsSwimming> ().isSwimming == false ) {
                 RNG = Random.Range ( 1, 150 );
                 Debug.Log ( RNG );
                 if ( RNG >= 101 ) {
@@ -50,7 +50,7 @@ public class FishingSpot : MonoBehaviour {
                     print ( "get item from here " + getItem );
                     Debug.Log ( "fishing" );
                 }
-                if ( IsAbleToFish && Input.GetKeyDown ( KeyCode.L ) && GameObject.Find ( "Player" ).GetComponent<InputTesting> ().isSwimming == true ) {
+                if ( IsAbleToFish && Input.GetKeyDown ( KeyCode.L ) && GameObject.Find ( "Player" ).GetComponent<IsSwimming> ().isSwimming == true ) {
                     Debug.Log ( "cant fish while swimming" );
                 }
             }

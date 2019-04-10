@@ -1106,6 +1106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b64076c2848ee640a62d7a3b806f98d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSwimming: 0
 --- !u!1001 &234555548
 Prefab:
   m_ObjectHideFlags: 0
@@ -10730,7 +10731,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2046820487}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5441413398265b248a61882e979b2f80, type: 3}
   m_Name: 

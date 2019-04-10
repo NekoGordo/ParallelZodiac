@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class IsSwimming : MonoBehaviour {
 
+    public bool isSwimming = false;
+
     private void OnTriggerStay ( Collider other ) {
         if ( other.name == "WaterBasicDaytime" ) {
-            gameObject.GetComponentInParent<InputTesting> ().isSwimming = true;
+            isSwimming= true;
         }
     }
 
     void OnTriggerExit ( Collider other ) {
-        if ( gameObject.GetComponentInParent<InputTesting> ().isSwimming == true) {
-            gameObject.GetComponentInParent<InputTesting> ().isSwimming = false;
+        if ( isSwimming) {
+            isSwimming = false;
         }
     }
 }

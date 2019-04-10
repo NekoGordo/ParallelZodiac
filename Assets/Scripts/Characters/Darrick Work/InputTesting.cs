@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class InputTesting : MonoBehaviour
 {
+    const int NULL_VALUE = -999;
     public bool showCameraAngles;
-    public bool isSwimming;
 
     [SerializeField]
     float horizontalMovement = 0;
@@ -16,8 +16,12 @@ public class InputTesting : MonoBehaviour
     [SerializeField]
     float cameraVertical = 0;
     [SerializeField]
+    float sprintValue = 0;
+    [SerializeField]
     float zoomValue = 0;
 
+    PlayerBehaviour playerScript;
+    CameraBehaviour camScript;
     [SerializeField]
     Rigidbody self;
     [SerializeField]
@@ -30,11 +34,15 @@ public class InputTesting : MonoBehaviour
     float camAngle;
 
     Vector3 cameraForward, cameraRight, cameraUp;
+    Vector3 surfaceOrient;
     Vector3 camProj;
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
         playerCam = GameObject.FindGameObjectWithTag("MainCamera");
+        camScript = playerCam.GetComponent<CameraBehaviour>();
         self = GetComponentInChildren<Rigidbody>();
         camAnchor = GameObject.Find("Camera Anchor");
         
@@ -43,15 +51,15 @@ public class InputTesting : MonoBehaviour
     void Update ()
     {
         ProjectCameraToPlayerCoordinates();
-        cameraTether = camAnchor.transform.position + playerCam.transform.position;
         CalculateCameraAngle();
 
         horizontalMovement = Input.GetAxis("Horizontal");
         verticalMovement = Input.GetAxis("Vertical");
         cameraHorizontal = Input.GetAxis("Mouse X");
         cameraVertical = Input.GetAxis("Mouse Y");
+        sprintValue = Input.GetAxis("Sprint");
         zoomValue = Input.GetAxis("Zoom");
-        camDistance = GetComponent<ThirdPersonController>().GetCamDistance();
+        
 
         if(Mathf.Sign(playerCam.transform.position.y - camAnchor.transform.position.y) < 0)
             camAngle = -camAngle;
@@ -61,41 +69,59 @@ public class InputTesting : MonoBehaviour
         Debug.DrawRay(transform.position, self.velocity, Color.red + Color.yellow);      
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.tag == "Surface")
+            surfaceOrient = collision.gameObject.transform.rotation.eulerAngles;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        surfaceOrient = Vector3.one * NULL_VALUE;
+    }
+
     private void OnGUI()
     {
 
-        //GUI.color = Color.black;
-        //GUILayout.BeginVertical();
-        //    GUILayout.BeginHorizontal();
-        //        GUILayout.Label("Velocity:");
-        //        GUILayout.BeginVertical();
-        //            GUILayout.BeginHorizontal();
-        //                GUILayout.Label("Direction:");
-        //                GUILayout.Label(self.velocity.ToString());
-        //            GUILayout.EndHorizontal();
-        //            GUILayout.BeginHorizontal();
-        //                GUILayout.Label("Speed:");                        
-        //                GUILayout.Label(self.velocity.magnitude.ToString("F4"));
-        //            GUILayout.EndHorizontal();
-        //        GUILayout.EndVertical();
-        //    GUILayout.EndHorizontal();
-        //    GUILayout.BeginHorizontal();
-        //        GUILayout.Label("Camera Position:");
-        //        GUILayout.Label(playerCam.transform.position.ToString("F2"));
-        //    GUILayout.EndHorizontal();
-        //    GUILayout.BeginHorizontal();
-        //        GUILayout.Label("Camera Projection:");
-        //        GUILayout.Label(camProj.ToString("F2"));
-        //    GUILayout.EndHorizontal();
-        //    GUILayout.BeginHorizontal();
-        //        GUILayout.Label("Camera angle");
-        //        GUILayout.Label(camAngle.ToString("F1"));
-        //    GUILayout.EndHorizontal();
-        //    GUILayout.BeginHorizontal();
-        //        GUILayout.Label("Tether Length:");
-        //        GUILayout.Label(camDistance.ToString("F2"));
-        //    GUILayout.EndHorizontal();
-        //GUILayout.EndVertical();
+        GUI.color = Color.black;
+        GUILayout.BeginVertical();
+            if (playerScript.sprint) GUILayout.Label("Player is sprinting");
+            else if (playerScript.sneak) GUILayout.Label("Player is sneaking");
+            else if (playerScript.jump) GUILayout.Label("Player is airborne");
+            else GUILayout.Label("Player is moving");
+            GUILayout.BeginHorizontal();
+                GUILayout.Label("Velocity:");
+                GUILayout.BeginVertical();
+                    GUILayout.BeginHorizontal();
+                        GUILayout.Label("Direction:");
+                    GUILayout.EndHorizontal();
+                    GUILayout.BeginHorizontal();
+                        GUILayout.Label("Speed:");                        
+                    GUILayout.EndHorizontal();
+                GUILayout.EndVertical();
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+                GUILayout.Label("Camera Position:");
+                GUILayout.Label(playerCam.transform.position.ToString("F2"));
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+                GUILayout.Label("Camera Projection:");
+                GUILayout.Label(camProj.ToString("F2"));
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+                GUILayout.Label("Camera angle");
+                GUILayout.Label(camAngle.ToString("F1"));
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+                GUILayout.Label("Tether Length:");
+                GUILayout.Label(camDistance.ToString("F2"));
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+                GUILayout.Label("Surface Orientation: ");
+                if (surfaceOrient == (Vector3.one * NULL_VALUE)) GUILayout.Label("Not on a surface");
+                else GUILayout.Label(surfaceOrient.ToString("F4"));
+            GUILayout.EndHorizontal();
+        GUILayout.EndVertical();
 
         
     }
