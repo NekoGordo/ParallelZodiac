@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCStats
-{
+public class NPCStats : MonoBehaviour{
     public int rand;
 
     private void Stat ()

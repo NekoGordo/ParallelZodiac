@@ -6,5 +6,5 @@ public class BaseEggItem : BaseItem  {
     
     public string EggName { get; set; }
     public string WhichDragon { get; set; }
-
+    public bool iSDragon;
 }

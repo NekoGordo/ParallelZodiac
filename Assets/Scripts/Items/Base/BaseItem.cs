@@ -5,5 +5,6 @@ using UnityEngine;
 public class BaseItem {
     public string FlavourText { get; set; }
     public int ItemPrice;
-    public string ItemWorth { get; set; }
+    public int itemID;
+    public string Itemrarity { get; set; }
 }
