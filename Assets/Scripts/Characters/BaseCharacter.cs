@@ -58,7 +58,8 @@ public class BaseCharacter : MonoBehaviour
     //TODO: A different update for when they are acting?
     public virtual void CharacterUpdate()
     {
-        if (IsDead()) return;
+        if (IsDead())
+            return;
 
         UpdateBar();
         UpdateCanvas();
@@ -71,9 +72,11 @@ public class BaseCharacter : MonoBehaviour
     }
 
     public bool IsDead()
-    {   
-        if (myStats.HealthPoints == 0)
+    {
+        if ( myStats.HealthPoints <= 0 ) {
+            myStats.HealthPoints = 0;
             return true;
+        }
         return false;
     }
 
@@ -129,6 +132,7 @@ public class BaseCharacter : MonoBehaviour
     {
         myStats.HealthPoints = 0;
         myStats.AttackBar = 0;
+        IsDead ();
 
         UpdateCanvas();
 
