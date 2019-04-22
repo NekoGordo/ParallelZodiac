@@ -212,5 +212,7 @@ public class FireCactus : Enemy
         // divide delta time * agility by 32 
     }
 
-    
+    public FireCactus () {
+        
+    }
 }

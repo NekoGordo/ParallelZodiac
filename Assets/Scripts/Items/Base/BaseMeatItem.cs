@@ -5,7 +5,6 @@ using UnityEngine;
 public class BaseMeatItem : BaseItem {
 
     public string MeatName { get; set; }
-    public string FoodType { get; set; }
     //any other modifyers go here
 	
 }

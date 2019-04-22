@@ -36,9 +36,9 @@ public class CharacterStats
     public float AttackSpeed;   //attack speed
     public float TravelStamina; //helps with trvels
     public float HealthPoints;
-    public float MaximumHealthPoints;
+    public float MaximumHealthPoints = 0;
     public float MaximumAttackBar;
-    public float MaximumAbilityPoints;
+    public float MaximumAbilityPoints = 0;
     public float AttackBar;
 }
 
