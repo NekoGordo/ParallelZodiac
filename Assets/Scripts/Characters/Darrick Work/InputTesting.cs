@@ -85,10 +85,6 @@ public class InputTesting : MonoBehaviour
 
         GUI.color = Color.black;
         GUILayout.BeginVertical();
-            if (playerScript.sprint) GUILayout.Label("Player is sprinting");
-            else if (playerScript.sneak) GUILayout.Label("Player is sneaking");
-            else if (playerScript.jump) GUILayout.Label("Player is airborne");
-            else GUILayout.Label("Player is moving");
             GUILayout.BeginHorizontal();
                 GUILayout.Label("Velocity:");
                 GUILayout.BeginVertical();

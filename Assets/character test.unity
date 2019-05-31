@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 4312199}
   - component: {fileID: 4312203}
   - component: {fileID: 4312202}
+  - component: {fileID: 4312204}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Comp
@@ -214,14 +215,16 @@ MonoBehaviour:
   target: {fileID: 0}
   moveSpeed: 0
   rotationSpeed: 3
+  dir: {x: 90, y: 0, z: 0}
   OtherCom: []
   OtherCompT: []
   myTransform: {fileID: 0}
-  distance: 3
-  Dist: 3
+  distance: 0
+  Dist: 0
   CStop: 4
   stop: 3
-  vec3: {x: 0, y: 0, z: 0}
+  PlayerCloseEnough: 0
+  CompCloseEnough: 0
 --- !u!54 &4312203
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -237,7 +240,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1001 &366899313
+--- !u!114 &4312204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 4312197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47480f6717bb4c44684028640bc15c4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ID: -1
+  m_Target: {fileID: 0}
+  m_InteractorLookInteractMaxAngle: 30
+  m_MaxHorizontalOffset: 0.5
+  m_InteractorLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  m_TargetInteractorOffset: {x: -1, y: -1, z: -1}
+--- !u!1001 &133889548
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -276,6 +298,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114888303256711384, guid: 1ea17994d63fab545ac764219f866e5a,
+        type: 2}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 1621956101}
+    - target: {fileID: 114773058913774088, guid: 1ea17994d63fab545ac764219f866e5a,
+        type: 2}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 1621956101}
+    - target: {fileID: 114894633329054540, guid: 1ea17994d63fab545ac764219f866e5a,
+        type: 2}
+      propertyPath: moveSpd
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ea17994d63fab545ac764219f866e5a, type: 2}
   m_IsPrefabAsset: 0
@@ -290,7 +327,7 @@ GameObject:
   - component: {fileID: 718370834}
   - component: {fileID: 718370833}
   - component: {fileID: 718370832}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,14 +519,16 @@ MonoBehaviour:
   target: {fileID: 0}
   moveSpeed: 0
   rotationSpeed: 3
+  dir: {x: 90, y: 0, z: 0}
   OtherCom: []
   OtherCompT: []
   myTransform: {fileID: 0}
-  distance: 3
-  Dist: 3
+  distance: 0
+  Dist: 0
   CStop: 4
   stop: 6
-  vec3: {x: 0, y: 0, z: 0}
+  PlayerCloseEnough: 0
+  CompCloseEnough: 0
 --- !u!1 &1401193030
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,14 +645,16 @@ MonoBehaviour:
   target: {fileID: 0}
   moveSpeed: 0
   rotationSpeed: 3
+  dir: {x: -90, y: 0, z: 0}
   OtherCom: []
   OtherCompT: []
   myTransform: {fileID: 0}
-  distance: 3
-  Dist: 3
+  distance: 0
+  Dist: 0
   CStop: 4
   stop: 6
-  vec3: {x: 0, y: 0, z: 0}
+  PlayerCloseEnough: 0
+  CompCloseEnough: 0
 --- !u!1 &1500704503
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,8 +799,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1621956101}
-  m_LocalRotation: {x: -0.27395165, y: -0.0014426108, z: 0.0004109319, w: -0.9617423}
-  m_LocalPosition: {x: -0.18698321, y: 38.643738, z: -62.327698}
+  m_LocalRotation: {x: 0, y: 1, z: 0.00000002109899, w: 0}
+  m_LocalPosition: {x: 0, y: 1.6299999, z: 5.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -778,6 +819,7 @@ GameObject:
   - component: {fileID: 2120793905}
   - component: {fileID: 2120793909}
   - component: {fileID: 2120793908}
+  - component: {fileID: 2120793910}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Comp
@@ -881,11 +923,32 @@ MonoBehaviour:
   target: {fileID: 0}
   moveSpeed: 0
   rotationSpeed: 3
+  dir: {x: -90, y: 0, z: 0}
   OtherCom: []
   OtherCompT: []
   myTransform: {fileID: 0}
-  distance: 3
-  Dist: 3
+  distance: 0
+  Dist: 0
   CStop: 4
   stop: 3
-  vec3: {x: 0, y: 0, z: 0}
+  PlayerCloseEnough: 0
+  CompCloseEnough: 0
+--- !u!114 &2120793910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2120793903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47480f6717bb4c44684028640bc15c4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ID: -1
+  m_Target: {fileID: 0}
+  m_InteractorLookInteractMaxAngle: 30
+  m_MaxHorizontalOffset: 0.5
+  m_InteractorLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  m_TargetInteractorOffset: {x: -1, y: -1, z: -1}

@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 114292281261418574}
   - component: {fileID: 114888303256711384}
   - component: {fileID: 114894633329054540}
+  - component: {fileID: 114910305338307440}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -210,7 +211,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1163645622842678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: 4, z: 1.5}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4377682064490164}
@@ -530,13 +531,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d959498ce13c3cd4083290a9de079bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MIN_ZOOM_SPD: 1
+  MAX_ZOOM_SPD: 10
+  MIN_ROT_SPD: 1
+  MAX_ROT_SPD: 10
   MIN_CAM_DIST: 2.5
   MAX_CAM_DIST: 10
+  MAX_VERTICAL_ANGLE: 30
+  playerCam: {fileID: 0}
+  camAnchor: {fileID: 1717805542711776}
+  sphericalPos: {x: 5.65, y: 90, z: 0}
   zoomSpd: 3
   camRotSpd: 2
   maxHorizonAngle: 30
-  camAnchor: {fileID: 0}
-  sphericalPos: {x: 0, y: 0, z: 0}
+  camRight: {x: 0, y: 0, z: 0}
+  camForward: {x: 0, y: 0, z: 0}
+  debug_DrawCoordinates: 0
 --- !u!114 &114894633329054540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -548,28 +558,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d9fc0993bd1b9488a8c493de02c77d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MIN_CHR_MOVESPD: 1
-  MAX_CHR_MOVESPD: 10
-  MIN_SPRINT_FACTOR: 1.1
-  MAX_SPRINT_FACTOR: 3.5
-  MIN_SNEAK_FACTOR: 0.1
-  MAX_SNEAK_FACTOR: 0.9
-  MIN_JUMP: 2
-  MAX_JUMP: 8
-  MIN_CLIMB_ANGLE: 30
+  GRAVITY: 12.1
+  debugCoordinates: 0
+  debugMovement: 0
+  debugCollisions: 0
+  MIN_CHR_SPD: 2
+  MAX_CHR_SPD: 10
+  MIN_SPRINT: 1.1
+  MAX_SPRINT: 3.5
+  MIN_SNEAK: 0.1
+  MAX_SNEAK: 0.9
+  MIN_JUMP_TIME: 2
+  MAX_JUMP_TIME: 8
+  MIN_CLIMB_ANGLE: 55
   MAX_CLIMB_ANGLE: 90
-  moveSpd: 5.75
-  sprintFactor: 2.16
+  moveSpd: 3.75
+  sprintFactor: 2.53
   sneakFactor: 0.43
-  jumpHeight: 3.85
-  climbAngle: 75
-  spawnPos: {x: 0, y: 10, z: 0}
-  sprint: 0
-  sneak: 0
-  jump: 0
-  act: 0
-  climb: 0
-  attack: 0
+  jump: 0.46
+  airDelay: 0.08
+  climbAngle: 60
+  dragSpeed: 5
+  gravityAdd: 2.8
+  moving: 0
+  canClimb: 0
+  climbing: 0
+  canSwim: 0
+  swimming: 0
+  canJump: 0
+  jumping: 0
+  sprinting: 0
+  sneaking: 0
+  acting: 0
+  attacking: 0
+--- !u!114 &114910305338307440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1163645622842678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d64e59fb5aa0d8488d0bd374f643b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundAngle: 0
+  debugCollisions: 0
+  collisionPadding: 0.05
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 2097152
+  defaultLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  grounded: 0
+  hitWall_forward: 0
+  againstWall: 0
+  hitCeiling: 0
+  falling: 0
+  width: 0
+  height: 0
 --- !u!136 &136033684079761208
 CapsuleCollider:
   m_ObjectHideFlags: 1
