@@ -33,6 +33,7 @@ public class PlayerCollisionDetection : MonoBehaviour
                      LARGE_COLLIDER_ITERATIONS = 3;
 
     const float DEFAULT_HIT_DUMMY = -9999.0f;
+
     #endregion
 
     #region Public
@@ -191,7 +192,7 @@ public class PlayerCollisionDetection : MonoBehaviour
         if (wallHits.Length == SMALL_COLLIDER_WALLCHECKS)
         {
             Wallcast(ref colliDir, ref colPt); // Check from center
-            if (colliDir != RaycastDirection.NULL)
+            if (colliDir != RaycastDirection.NULL && !TestIncline(colliDir))
             {
                 Debug.Log("Collision detected in " + GetCollisionDirection(colliDir) + " direction");
                 WallDisplace(colliDir, colPt);
@@ -200,7 +201,7 @@ public class PlayerCollisionDetection : MonoBehaviour
         else
         {
             Wallcast(ref colliDir, ref colPos, ref colPt); // Check from groin, center, and head
-            if (colliDir != RaycastDirection.NULL)
+            if (colliDir != RaycastDirection.NULL && !TestIncline(colliDir))
             {
                 Debug.Log("Collision Detected at " + GetCollisionPosition(colPos) + ", " + GetCollisionDirection(colliDir) + " direction");
                 WallDisplace(colliDir, colPos, colPt);
@@ -335,6 +336,29 @@ public class PlayerCollisionDetection : MonoBehaviour
     {
         return Physics.Raycast(raycastPos, raycastDir, out wallHits[8 * (int)position + (int)direction], width + collisionPadding, groundLayer);
     }    
+
+    bool TestIncline(RaycastDirection dir)
+    {
+        if (dir != RaycastDirection.NULL) // First check that there was a wall hit
+        {
+            Debug.Log(GetCollisionDirection(dir) + " collision detected");
+            if (grounded) // Check that we are also grounded
+            {
+                Debug.Log("I am grounded");
+                if (Mathf.Abs(groundAngle) < playerScript.climbAngle) // Check that the ground angle is not a climbing angle. It is walkable, therefore an incline
+                {
+                    Debug.Log("Incline is angled at " + Mathf.Abs(groundAngle));
+                    return true;
+                }
+                else
+                {
+                    Debug.Log("Incline is angled at " + Mathf.Abs(groundAngle));
+                    return false;
+                }
+            }
+        }
+        return false; // We are on a climbable slope or a wall
+    }
 
     void WallDisplace(RaycastDirection dir, Vector3 collisionPt)
     {
