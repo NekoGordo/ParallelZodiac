@@ -5,6 +5,7 @@ using UnityEditor;
 
 [RequireComponent(typeof(PlayerBehaviour))]
 [RequireComponent(typeof(CameraBehaviour))]
+[RequireComponent(typeof(PlayerCollisionDetection))]
 [CustomEditor(typeof(ThirdPersonController))]
 public class ThirdPersonEditor : Editor
 {
@@ -12,7 +13,7 @@ public class ThirdPersonEditor : Editor
     const float ABS_MIN_JUMP = 0.0f;
     const float ABS_MIN_SPRINT = 1.1f;
     const float ABS_MIN_SNEAK = 0.1f;
-    const float ABS_MIN_CLIMB_ANGLE = 60.0f;
+    const float ABS_MIN_CLIMB_ANGLE = 55.0f;
 
     const float ABS_MIN_CAM_RADIUS = 2.5f;
     const float ABS_MIN_ZOOM_SPD = 1.0f;
@@ -27,7 +28,8 @@ public class ThirdPersonEditor : Editor
     ThirdPersonController self;
     PlayerBehaviour playerScript;
     CameraBehaviour camScript;
-    GameObject player, camera;
+    PlayerCollisionDetection colScript;
+    GameObject camera;
 
     bool showPlayerInfo, lockPlayerConstraints = true, showPlayerConstraints, showCameraInfo, lockCamConstraints = true, showCamConstraints;
     int labelWidth, subWidth, constraintWidth;
@@ -37,7 +39,6 @@ public class ThirdPersonEditor : Editor
         self = (ThirdPersonController)target;
         playerScript = self.GetComponent<PlayerBehaviour>();
         camScript = self.GetComponent<CameraBehaviour>();
-        player = self.gameObject;
         camera = GameObject.FindGameObjectWithTag("MainCamera");
         if (camScript.playerCam == null) camScript.playerCam = GameObject.FindGameObjectWithTag("MainCamera").gameObject;
         if (camScript.camAnchor == null) camScript.camAnchor = GameObject.Find("Camera Anchor").gameObject;
@@ -56,8 +57,8 @@ public class ThirdPersonEditor : Editor
         //Editor_CameraUpdate();
 
         EditorGUILayout.BeginVertical();
-            ShowPlayerOptions();
-            ShowCameraOptions();
+        ShowPlayerOptions();
+        ShowCameraOptions();
         EditorGUILayout.EndVertical();
     }
 
@@ -69,6 +70,7 @@ public class ThirdPersonEditor : Editor
         if (showPlayerInfo)
         {
             EditorGUI.indentLevel++;
+
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Move Speed", GUILayout.Width(LABEL_WIDTH));
@@ -107,7 +109,7 @@ public class ThirdPersonEditor : Editor
                 EditorGUILayout.LabelField("Movement speed");
                 if (lockPlayerConstraints) ShowMinMax(ref playerScript.MIN_CHR_SPD, ref playerScript.MAX_CHR_SPD); else ChangeMinMax(ref playerScript.MIN_CHR_SPD, ref playerScript.MAX_CHR_SPD);
                 EditorGUILayout.LabelField("Jump Height");
-                if (lockPlayerConstraints) ShowMinMax(ref playerScript.MIN_JUMP_TIME, ref playerScript.MAX_JUMP_TIME); else ChangeMinMax(ref playerScript.MIN_JUMP_TIME, ref playerScript.MAX_JUMP_TIME);
+                if (lockPlayerConstraints) ShowMinMax(ref playerScript.MIN_JUMP_VAL, ref playerScript.MAX_JUMP_VAL); else ChangeMinMax(ref playerScript.MIN_JUMP_VAL, ref playerScript.MAX_JUMP_VAL);
                 EditorGUILayout.LabelField("Sprint Factor");
                 if (lockPlayerConstraints) ShowMinMax(ref playerScript.MIN_SPRINT, ref playerScript.MAX_SPRINT); else ChangeMinMax(ref playerScript.MIN_SPRINT, ref playerScript.MAX_SPRINT);
                 EditorGUILayout.LabelField("Sneak Factor");
@@ -121,7 +123,8 @@ public class ThirdPersonEditor : Editor
             }
 
             EditorGUI.indentLevel--;
-        }       
+        }
+        EditorUtility.SetDirty(playerScript);
     }
 
     void ShowCameraOptions()
@@ -151,7 +154,7 @@ public class ThirdPersonEditor : Editor
             camScript.sphericalPos = PointEditor("R", "T", "P", camScript.sphericalPos, true);
             EditorGUILayout.EndHorizontal();
 
-            
+
 
             showCamConstraints = EditorGUILayout.Foldout(showCamConstraints, "Camera Constraints", true);
             if (showCamConstraints)
@@ -169,9 +172,9 @@ public class ThirdPersonEditor : Editor
                 if (lockCamConstraints) ShowMinMax(ref camScript.MIN_ROT_SPD, ref camScript.MAX_ROT_SPD); else ChangeMinMax(ref camScript.MIN_ROT_SPD, ref camScript.MAX_ROT_SPD);
 
                 EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.LabelField("Maximum horizon angle", GUILayout.Width(200));
-                    if (lockCamConstraints) EditorGUILayout.LabelField(camScript.MAX_VERTICAL_ANGLE.ToString(), GUILayout.Width(CONSTRAIN_FIELD));
-                    else camScript.MAX_VERTICAL_ANGLE = EditorGUILayout.FloatField(GUIContent.none, camScript.MAX_VERTICAL_ANGLE, GUILayout.Width(CONSTRAIN_FIELD));
+                EditorGUILayout.LabelField("Maximum horizon angle", GUILayout.Width(200));
+                if (lockCamConstraints) EditorGUILayout.LabelField(camScript.MAX_VERTICAL_ANGLE.ToString(), GUILayout.Width(CONSTRAIN_FIELD));
+                else camScript.MAX_VERTICAL_ANGLE = EditorGUILayout.FloatField(GUIContent.none, camScript.MAX_VERTICAL_ANGLE, GUILayout.Width(CONSTRAIN_FIELD));
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUI.indentLevel--;
@@ -179,15 +182,16 @@ public class ThirdPersonEditor : Editor
 
             EditorGUI.indentLevel--;
         }
+        EditorUtility.SetDirty(camScript);
     }
 
     float ShowOptionSlider(string left, string right, float labelWidth, float modValue, ref float min, ref float max)
-    {        
+    {
         EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField(left, GUILayout.Width(labelWidth));
-            modValue = GUILayout.HorizontalSlider(modValue, min, max, GUILayout.Width(128));
-            EditorGUILayout.LabelField(right, GUILayout.Width(labelWidth));
-            modValue = EditorGUILayout.FloatField(GUIContent.none, modValue, GUILayout.Width(CONSTRAIN_FIELD));            
+        EditorGUILayout.LabelField(left, GUILayout.Width(labelWidth));
+        modValue = GUILayout.HorizontalSlider(modValue, min, max, GUILayout.Width(128));
+        EditorGUILayout.LabelField(right, GUILayout.Width(labelWidth));
+        modValue = EditorGUILayout.FloatField(GUIContent.none, modValue, GUILayout.Width(CONSTRAIN_FIELD));
         EditorGUILayout.EndHorizontal();
 
         return modValue;
@@ -198,35 +202,35 @@ public class ThirdPersonEditor : Editor
         Vector3 dynamicPoint = point;
 
         EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField(xLabel, GUILayout.Width(32));
-            dynamicPoint.x = EditorGUILayout.FloatField(GUIContent.none, dynamicPoint.x, GUILayout.Width(128));
+        EditorGUILayout.LabelField(xLabel, GUILayout.Width(32));
+        dynamicPoint.x = EditorGUILayout.FloatField(GUIContent.none, dynamicPoint.x, GUILayout.Width(128));
 
-            if (!isSpherePos) // Not a spherical position point; display normally
-            {
-                EditorGUILayout.LabelField(yLabel, GUILayout.Width(32));
-                dynamicPoint.y = EditorGUILayout.FloatField(GUIContent.none, dynamicPoint.y, GUILayout.Width(128));
-                EditorGUILayout.LabelField(zLabel, GUILayout.Width(32));
-                dynamicPoint.z = EditorGUILayout.FloatField(GUIContent.none, dynamicPoint.z, GUILayout.Width(128));
-            }
-            else // Spherical position point; flip y and z
-            {
-                float editorP = dynamicPoint.y - 90;
+        if (!isSpherePos) // Not a spherical position point; display normally
+        {
+            EditorGUILayout.LabelField(yLabel, GUILayout.Width(32));
+            dynamicPoint.y = EditorGUILayout.FloatField(GUIContent.none, dynamicPoint.y, GUILayout.Width(128));
+            EditorGUILayout.LabelField(zLabel, GUILayout.Width(32));
+            dynamicPoint.z = EditorGUILayout.FloatField(GUIContent.none, dynamicPoint.z, GUILayout.Width(128));
+        }
+        else // Spherical position point; flip y and z
+        {
+            float editorP = dynamicPoint.y - 90;
 
-                EditorGUILayout.LabelField(yLabel, GUILayout.Width(32));
-                dynamicPoint.z = EditorGUILayout.FloatField(GUIContent.none, dynamicPoint.z, GUILayout.Width(128));
-                if (dynamicPoint.z < 0) dynamicPoint.z += 360; else if (dynamicPoint.z > 360) dynamicPoint.z -= 360;
-                EditorGUILayout.LabelField(zLabel, GUILayout.Width(32));
-                editorP = EditorGUILayout.FloatField(GUIContent.none, editorP, GUILayout.Width(128));
-                if (editorP < -camScript.MAX_VERTICAL_ANGLE) editorP = -camScript.MAX_VERTICAL_ANGLE; else if (editorP > camScript.MAX_VERTICAL_ANGLE) editorP = camScript.MAX_VERTICAL_ANGLE;
+            EditorGUILayout.LabelField(yLabel, GUILayout.Width(32));
+            dynamicPoint.z = EditorGUILayout.FloatField(GUIContent.none, dynamicPoint.z, GUILayout.Width(128));
+            if (dynamicPoint.z < 0) dynamicPoint.z += 360; else if (dynamicPoint.z > 360) dynamicPoint.z -= 360;
+            EditorGUILayout.LabelField(zLabel, GUILayout.Width(32));
+            editorP = EditorGUILayout.FloatField(GUIContent.none, editorP, GUILayout.Width(128));
+            if (editorP < -camScript.MAX_VERTICAL_ANGLE) editorP = -camScript.MAX_VERTICAL_ANGLE; else if (editorP > camScript.MAX_VERTICAL_ANGLE) editorP = camScript.MAX_VERTICAL_ANGLE;
 
-                dynamicPoint.y = editorP + 90;
-            }
+            dynamicPoint.y = editorP + 90;
+        }
 
         EditorGUILayout.EndHorizontal();
 
         return dynamicPoint;
     }
-    
+
     void Editor_CameraUpdate()
     {
         camera.transform.position = camScript.camAnchor.transform.position + Editor_ConvertSphericalToCartesian();
@@ -245,31 +249,30 @@ public class ThirdPersonEditor : Editor
     void ShowMinMax(ref float min, ref float max)
     {
         EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Min", GUILayout.Width(CONSTRAIN_WIDTH));
-            EditorGUILayout.LabelField(min.ToString() , GUILayout.Width(CONSTRAIN_FIELD));
-            EditorGUILayout.LabelField("Max", GUILayout.Width(CONSTRAIN_WIDTH));
-            EditorGUILayout.LabelField(max.ToString(), GUILayout.Width(CONSTRAIN_FIELD));
+        EditorGUILayout.LabelField("Min", GUILayout.Width(CONSTRAIN_WIDTH));
+        EditorGUILayout.LabelField(min.ToString(), GUILayout.Width(CONSTRAIN_FIELD));
+        EditorGUILayout.LabelField("Max", GUILayout.Width(CONSTRAIN_WIDTH));
+        EditorGUILayout.LabelField(max.ToString(), GUILayout.Width(CONSTRAIN_FIELD));
         EditorGUILayout.EndHorizontal();
     }
 
     void ChangeMinMax(ref float min, ref float max)
     {
         EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Min", GUILayout.Width(CONSTRAIN_WIDTH));
-            min = EditorGUILayout.FloatField(GUIContent.none, min, GUILayout.Width(CONSTRAIN_FIELD));
-            EditorGUILayout.LabelField("Max", GUILayout.Width(CONSTRAIN_WIDTH));
-            max = EditorGUILayout.FloatField(GUIContent.none, max, GUILayout.Width(CONSTRAIN_FIELD));
+        EditorGUILayout.LabelField("Min", GUILayout.Width(CONSTRAIN_WIDTH));
+        min = EditorGUILayout.FloatField(GUIContent.none, min, GUILayout.Width(CONSTRAIN_FIELD));
+        EditorGUILayout.LabelField("Max", GUILayout.Width(CONSTRAIN_WIDTH));
+        max = EditorGUILayout.FloatField(GUIContent.none, max, GUILayout.Width(CONSTRAIN_FIELD));
         EditorGUILayout.EndHorizontal();
     }
-    
+
 
     void CheckPlayerMinContraints()
     {
         if (playerScript.MIN_CHR_SPD < ABS_MIN_PLAYER_SPEED) playerScript.MIN_CHR_SPD = ABS_MIN_PLAYER_SPEED;
-        if (playerScript.MIN_JUMP_TIME < ABS_MIN_JUMP) playerScript.MIN_JUMP_TIME = ABS_MIN_JUMP;
+        if (playerScript.MIN_JUMP_VAL < ABS_MIN_JUMP) playerScript.MIN_JUMP_VAL = ABS_MIN_JUMP;
         if (playerScript.MIN_SPRINT < ABS_MIN_SPRINT) playerScript.MIN_SPRINT = ABS_MIN_SPRINT;
         if (playerScript.MIN_SNEAK < ABS_MIN_SNEAK) playerScript.MIN_SNEAK = ABS_MIN_SNEAK;
         if (playerScript.MIN_CLIMB_ANGLE < ABS_MIN_CLIMB_ANGLE) playerScript.MIN_CLIMB_ANGLE = ABS_MIN_CLIMB_ANGLE;
     }
-
 }
