@@ -20,7 +20,7 @@ public class ArmourItems : MonoBehaviour {
         armour.ArmourName = Aname;
         armour.FlavourText = desc;
         armour.ItemPrice = price;
-        armour.Itemrarity = rarity;
+        armour.ItemRarity = rarity;
         armour.ArmourType = ArType;
     }
 

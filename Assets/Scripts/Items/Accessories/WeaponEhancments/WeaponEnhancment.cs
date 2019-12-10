@@ -19,7 +19,7 @@ public class WeaponEnhancment : MonoBehaviour{
         WpEnchancment.WeaponEnhanceName = Adname;
         WpEnchancment.FlavourText = desc;
         WpEnchancment.ItemPrice = price;
-        WpEnchancment.Itemrarity = rarity;
+        WpEnchancment.ItemRarity = rarity;
     }
 
     void FixedUpdate () {

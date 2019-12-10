@@ -19,7 +19,7 @@ public class ArmourEnchancment : MonoBehaviour {
         ArEnchancment.ArmourEnhanceName= Arname;
         ArEnchancment.FlavourText = desc;
         ArEnchancment.ItemPrice = price;
-        ArEnchancment.Itemrarity = rarity;
+        ArEnchancment.ItemRarity = rarity;
     }
 
     /*   void FixedUpdate () {

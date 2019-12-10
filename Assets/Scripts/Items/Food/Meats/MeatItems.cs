@@ -19,7 +19,7 @@ public class MeatItems : MonoBehaviour {
         meat.MeatName = Mname;
             meat.FlavourText = desc;
             meat.ItemPrice = price;
-            meat.Itemrarity = rarity;
+            meat.ItemRarity = rarity;
             meat.FoodType = FdType;
         }
 

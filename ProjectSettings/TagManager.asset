@@ -40,6 +40,7 @@ TagManager:
   - Spell3Slot
   - Comp
   - Surface
+  - Director
   layers:
   - Default
   - TransparentFX

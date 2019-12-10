@@ -19,7 +19,7 @@ public class SpieceItem : MonoBehaviour {
         spice.SpiceName = Sname;
         spice.FlavourText = desc;
         spice.ItemPrice = price;
-        spice.Itemrarity = rarity;
+        spice.ItemRarity = rarity;
         spice.SpiceType = SpType;
     }
 

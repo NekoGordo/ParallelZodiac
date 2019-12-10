@@ -20,7 +20,7 @@ public class WeaponsItems : MonoBehaviour {
         weapon.WeaponName = Wname;
         weapon.FlavourText = desc;
         weapon.ItemPrice = price;
-        weapon.Itemrarity = rarity;
+        weapon.ItemRarity = rarity;
         weapon.WeaponType = WpType;
     }
 

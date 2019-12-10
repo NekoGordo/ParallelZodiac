@@ -132,7 +132,7 @@ public class CameraBehaviour : MonoBehaviour
         // Constrain vertical angle, phi, to be the maximum angle out from the horizon on either side
         if (sphericalPos.y < BASE_VERTICAL_ANGLE - MAX_VERTICAL_ANGLE) sphericalPos.y = BASE_VERTICAL_ANGLE - MAX_VERTICAL_ANGLE;
         else if (sphericalPos.y > BASE_VERTICAL_ANGLE + MAX_VERTICAL_ANGLE) sphericalPos.y = BASE_VERTICAL_ANGLE + MAX_VERTICAL_ANGLE;
-        // COnstrain horizontal angle, theta, to be between 0 and 360
+        // Constrain horizontal angle, theta, to be between 0 and 360
         if (sphericalPos.z < 0) sphericalPos.z += 360;
         else if (sphericalPos.z > 360) sphericalPos.z -= 360;
     }

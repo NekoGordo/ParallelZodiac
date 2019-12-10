@@ -19,7 +19,7 @@ public class ExtraFoodItems : MonoBehaviour {
         extra.ItemName = EIname;
         extra.FlavourText = desc;
         extra.ItemPrice = price;
-        extra.Itemrarity = rarity;
+        extra.ItemRarity = rarity;
   //      extra.FoodType = FdType;
     }
 

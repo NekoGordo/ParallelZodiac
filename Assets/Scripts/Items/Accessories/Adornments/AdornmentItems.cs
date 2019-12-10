@@ -20,7 +20,7 @@ public class AdornmentItems : MonoBehaviour {
         adornmens.AdornmentName = Adname;
         adornmens.FlavourText = desc;
         adornmens.ItemPrice = price;
-        adornmens.Itemrarity = rarity;
+        adornmens.ItemRarity = rarity;
         adornmens.AdornmentType = AdType;
     }
 

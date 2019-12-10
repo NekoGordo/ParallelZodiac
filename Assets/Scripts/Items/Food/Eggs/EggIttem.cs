@@ -20,7 +20,7 @@ public class EggIttem : MonoBehaviour {
         egg.EggName = Ename;
         egg.FlavourText = desc;
         egg.ItemPrice = price;
-        egg.Itemrarity = rarity;
+        egg.ItemRarity = rarity;
         egg.iSDragon = dEgg;
         if(dEgg == true ) {
             egg.WhichDragon = dragonType;

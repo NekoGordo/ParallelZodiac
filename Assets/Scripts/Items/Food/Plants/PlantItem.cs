@@ -20,7 +20,7 @@ public class PlantItem : MonoBehaviour {
         plant.PlantName = Pname;
         plant.FlavourText = desc;
         plant.ItemPrice = price;
-        plant.Itemrarity = rarity;
+        plant.ItemRarity = rarity;
 //        plant.FoodType = FdType;
     }
 
