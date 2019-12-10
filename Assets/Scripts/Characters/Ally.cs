@@ -48,7 +48,7 @@ public class Ally : BaseCharacter
     public override void ReceivPriority()
     {
         CreateMovementZone();
-        EnablePlayerControl();        
+        //EnablePlayerControl();        
     }
 
     void CreateMovementZone()
@@ -71,14 +71,14 @@ public class Ally : BaseCharacter
         }
     }
 
-    public void DisablePlayerControl()
-    {
-        Opsive.ThirdPersonController.EventHandler.ExecuteEvent(visual, "OnAllowGameplayInput", false);
-    }
-    public void EnablePlayerControl()
-    {
-        Opsive.ThirdPersonController.EventHandler.ExecuteEvent(visual, "OnAllowGameplayInput", true);
-    }
+    // public void DisablePlayerControl()
+    // {
+    //     Opsive.ThirdPersonController.EventHandler.ExecuteEvent(visual, "OnAllowGameplayInput", false);
+    // }
+    // public void EnablePlayerControl()
+    // {
+    //     Opsive.ThirdPersonController.EventHandler.ExecuteEvent(visual, "OnAllowGameplayInput", true);
+    // }
 
     public void Attack(Enemy enemyToAttack)
     {

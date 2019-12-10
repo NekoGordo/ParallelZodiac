@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 4312202}
   - component: {fileID: 4312204}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Cubeme
   m_TagString: Comp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,11 +217,15 @@ MonoBehaviour:
   rotationSpeed: 3
   dir: {x: 90, y: 0, z: 0}
   OtherCom: []
-  OtherCompT: []
+  comp1: {fileID: 0}
+  comp2: {fileID: 0}
+  marker: {fileID: 0}
+  comp3: {fileID: 0}
+  comp4: {fileID: 0}
   myTransform: {fileID: 0}
   distance: 0
   Dist: 0
-  CStop: 4
+  CStop: 2
   stop: 3
   PlayerCloseEnough: 0
   CompCloseEnough: 0
@@ -316,6 +320,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ea17994d63fab545ac764219f866e5a, type: 2}
   m_IsPrefabAsset: 0
+--- !u!4 &266468206 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4429157451222750, guid: 1ea17994d63fab545ac764219f866e5a,
+    type: 2}
+  m_PrefabInternal: {fileID: 133889548}
 --- !u!1 &718370831
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &795047832
 Transform:
   m_ObjectHideFlags: 0
@@ -521,11 +530,15 @@ MonoBehaviour:
   rotationSpeed: 3
   dir: {x: 90, y: 0, z: 0}
   OtherCom: []
-  OtherCompT: []
+  comp1: {fileID: 0}
+  comp2: {fileID: 0}
+  marker: {fileID: 0}
+  comp3: {fileID: 0}
+  comp4: {fileID: 0}
   myTransform: {fileID: 0}
   distance: 0
   Dist: 0
-  CStop: 4
+  CStop: 2
   stop: 6
   PlayerCloseEnough: 0
   CompCloseEnough: 0
@@ -548,7 +561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1401193031
 Transform:
   m_ObjectHideFlags: 0
@@ -647,11 +660,15 @@ MonoBehaviour:
   rotationSpeed: 3
   dir: {x: -90, y: 0, z: 0}
   OtherCom: []
-  OtherCompT: []
+  comp1: {fileID: 0}
+  comp2: {fileID: 0}
+  marker: {fileID: 0}
+  comp3: {fileID: 0}
+  comp4: {fileID: 0}
   myTransform: {fileID: 0}
   distance: 0
   Dist: 0
-  CStop: 4
+  CStop: 2
   stop: 6
   PlayerCloseEnough: 0
   CompCloseEnough: 0
@@ -806,6 +823,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1860778895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1860778896}
+  m_Layer: 0
+  m_Name: marker
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1860778896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1860778895}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 266468206}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2120793903
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,11 +970,15 @@ MonoBehaviour:
   rotationSpeed: 3
   dir: {x: -90, y: 0, z: 0}
   OtherCom: []
-  OtherCompT: []
+  comp1: {fileID: 0}
+  comp2: {fileID: 0}
+  marker: {fileID: 0}
+  comp3: {fileID: 0}
+  comp4: {fileID: 0}
   myTransform: {fileID: 0}
   distance: 0
   Dist: 0
-  CStop: 4
+  CStop: -2
   stop: 3
   PlayerCloseEnough: 0
   CompCloseEnough: 0

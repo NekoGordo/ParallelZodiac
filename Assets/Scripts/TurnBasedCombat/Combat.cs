@@ -144,28 +144,28 @@ public class Combat : MonoBehaviour
         }
     }
     //DO NOT CHANGE THIS IT TOOK ME FOREVER TO GET WORKING
-    public void TurnPass()
-    {
-        if (CharacterWithPriority != -1)
-        {
-            if (CharacterWithPriority == 4)
-            {
-                actingAlly.CanAct = false;
-                actingAlly.myStats.AttackBar = 0;
-                actingAlly.PassTurn();
-                actingAlly.DisablePlayerControl();
-                return;
-            }
-            else if (CharacterWithPriority == 5)
-            {
-                actingAlly.CanAct = false;
-                actingAlly.myStats.AttackBar = 0;
-                actingAlly.PassTurn();
-                actingAlly.DisablePlayerControl();
-                return;
-            }
-        }
-    }
+    //public void TurnPass()
+    //{
+    //    if (CharacterWithPriority != -1)
+    //    {
+    //        if (CharacterWithPriority == 4)
+    //        {
+    //            actingAlly.CanAct = false;
+    //            actingAlly.myStats.AttackBar = 0;
+    //            actingAlly.PassTurn();
+    //            actingAlly.DisablePlayerControl();
+    //            return;
+    //        }
+    //        else if (CharacterWithPriority == 5)
+    //        {
+    //            actingAlly.CanAct = false;
+    //            actingAlly.myStats.AttackBar = 0;
+    //            actingAlly.PassTurn();
+    //            actingAlly.DisablePlayerControl();
+    //            return;
+    //        }
+    //    }
+    //}
 
     //this find the enemy script
     private Enemy FindEnemies()
@@ -221,85 +221,85 @@ public class Combat : MonoBehaviour
      * the atttack button needs to get the main script from the enemy EG mineral dragon() firecactus() ....
      * then attacks the enemy and the enemy HP canvas (the red bar) should drop
      */
-    public void AttackBTN()
-    {
+    //public void AttackBTN()
+    //{
 
-        Enemy targetEnemy;
+    //    Enemy targetEnemy;
 
-        Debug.Log("Attacking");
-        if (CharacterWithPriority != -1)
-        {
+    //    Debug.Log("Attacking");
+    //    if (CharacterWithPriority != -1)
+    //    {
 
-            if (actingAlly.CanAct)
-            {
-                targetEnemy = FindEnemies();
-                if (targetEnemy)
-                {
-                    actingAlly.hasAttacked = true;
+    //        if (actingAlly.CanAct)
+    //        {
+    //            targetEnemy = FindEnemies();
+    //            if (targetEnemy)
+    //            {
+    //                actingAlly.hasAttacked = true;
                
-                    actingAlly.Attack(targetEnemy);
+    //                actingAlly.Attack(targetEnemy);
 
-                    actingAlly.CanAct = false;
-                    actingAlly.myStats.AttackBar = 0;
-                    actingAlly.PassTurn();
-                    actingAlly.DisablePlayerControl();
-                    actingAlly.hasAttacked = false;
-                    enemy = null;
-                    targetEnemy = null;
-                }
-                return;
-            }
+    //                actingAlly.CanAct = false;
+    //                actingAlly.myStats.AttackBar = 0;
+    //                actingAlly.PassTurn();
+    //                actingAlly.DisablePlayerControl();
+    //                actingAlly.hasAttacked = false;
+    //                enemy = null;
+    //                targetEnemy = null;
+    //            }
+    //            return;
+    //        }
 
-        }
-    }
+    //    }
+    //}
 
-    public void Run()
-    {
-        if (CharacterWithPriority != -1)
-        {
-            rng = Random.Range(1, 101);
-            Debug.Log(rng);
-            //shiro is faster so higher chance of escape
-            if (CharacterWithPriority == 4)
-            {
-                if (rng > 35)
-                {
-                    actingAlly.CanAct = false;
-                    actingAlly.myStats.AttackBar = 0;
-                    actingAlly.PassTurn();
-                    actingAlly.DisablePlayerControl();
-                    SceneManager.LoadScene("OverworldTest");
-                }
-                else if (rng < 35)
-                {
-                    actingAlly.CanAct = false;
-                    actingAlly.myStats.AttackBar = 0;
-                    actingAlly.PassTurn();
-                    actingAlly.DisablePlayerControl();
-                    return;
-                }
-            }
-            else if (CharacterWithPriority == 5)
-            {
-                if (rng > 60)
-                {
-                    actingAlly.CanAct = false;
-                    actingAlly.myStats.AttackBar = 0;
-                    actingAlly.PassTurn();
-                    actingAlly.DisablePlayerControl();
-                    SceneManager.LoadScene("OverworldTest");
-                }
-                else if (rng < 60)
-                {
-                    actingAlly.CanAct = false;
-                    actingAlly.myStats.AttackBar = 0;
-                    actingAlly.PassTurn();
-                    actingAlly.DisablePlayerControl();
-                    return;
-                }
-            }
-        }
-    }
+    //public void Run()
+    //{
+    //    if (CharacterWithPriority != -1)
+    //    {
+    //        rng = Random.Range(1, 101);
+    //        Debug.Log(rng);
+    //        //shiro is faster so higher chance of escape
+    //        if (CharacterWithPriority == 4)
+    //        {
+    //            if (rng > 35)
+    //            {
+    //                actingAlly.CanAct = false;
+    //                actingAlly.myStats.AttackBar = 0;
+    //                actingAlly.PassTurn();
+    //                actingAlly.DisablePlayerControl();
+    //                SceneManager.LoadScene("OverworldTest");
+    //            }
+    //            else if (rng < 35)
+    //            {
+    //                actingAlly.CanAct = false;
+    //                actingAlly.myStats.AttackBar = 0;
+    //                actingAlly.PassTurn();
+    //                actingAlly.DisablePlayerControl();
+    //                return;
+    //            }
+    //        }
+    //        else if (CharacterWithPriority == 5)
+    //        {
+    //            if (rng > 60)
+    //            {
+    //                actingAlly.CanAct = false;
+    //                actingAlly.myStats.AttackBar = 0;
+    //                actingAlly.PassTurn();
+    //                actingAlly.DisablePlayerControl();
+    //                SceneManager.LoadScene("OverworldTest");
+    //            }
+    //            else if (rng < 60)
+    //            {
+    //                actingAlly.CanAct = false;
+    //                actingAlly.myStats.AttackBar = 0;
+    //                actingAlly.PassTurn();
+    //                actingAlly.DisablePlayerControl();
+    //                return;
+    //            }
+    //        }
+    //    }
+    //}
     /*
      * the magic button for now should attack using magic and stuff i dont think we have a mana bar set up
      */
@@ -398,8 +398,8 @@ public class Combat : MonoBehaviour
         shiro.visual = shiroobj;
         binx.visual = binxobj;
 
-        shiro.DisablePlayerControl();
-        binx.DisablePlayerControl();
+        //shiro.DisablePlayerControl();
+        //binx.DisablePlayerControl();
 
         Characters.Add(shiro);
         Characters.Add(binx);
