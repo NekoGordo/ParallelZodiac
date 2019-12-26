@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DataReader;
+using DataReaders;
 
 public class TestLoading : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class TestLoading : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        json = JSONReader.ReadJSONFromFile(path);
-        Debug.Log(JSONReader.ParseJSON(json, keys, false, arrayKeys));
+        json = DataReader.ReadJSONFromFile(path);
+        Debug.Log(DataReader.ParseJSON(json, keys, false, arrayKeys));
     }
 }
