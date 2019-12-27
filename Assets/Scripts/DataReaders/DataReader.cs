@@ -139,10 +139,13 @@ namespace DataReaders
                 {
                     string finalKey = key;
 
+                    //Blank keys shall be ignored
                     if (key == "" || key.Length == 0 || key == null)
                     {
                         continue;
                     }
+                    
+                    //Remove escapre characters from the key string
                     if (key.Contains("\""))
                     {
                         finalKey = key.Replace("\"", "");
@@ -171,11 +174,13 @@ namespace DataReaders
                     else if (itemType == typeof(string))
                     {
                         string finalItem = (string)item;
+
+                        //Blank strings will also be ignored
                         if (finalItem.Length == 0 || finalItem == null || finalItem == "")
                         {
                             continue;
                         }
-
+                        //Remve escape characters 
                         if (finalItem.Contains("\""))
                         {
                             finalItem = finalItem.Replace("\"", "");
@@ -193,7 +198,7 @@ namespace DataReaders
                         throw new Exception("Could not determine type of item in CSV File. Must be a number, string, or bool");
                     }
                 }
-                masterJson.AddField(i.ToString(), innerJson);
+                masterJson.Add(innerJson);
             }
             return masterJson;
         }
