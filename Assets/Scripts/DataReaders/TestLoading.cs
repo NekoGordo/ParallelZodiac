@@ -6,7 +6,13 @@ using DataReaders;
 public class TestLoading : MonoBehaviour
 {
     [SerializeField]
-    private string path;
+    private string jsonPath;
+    [SerializeField]
+    private string csvPath;
+    [SerializeField]
+    private string jsonExt;
+    [SerializeField]
+    private string csvExt;
     [SerializeField]
     private string[] keys;
     [SerializeField]
@@ -16,7 +22,20 @@ public class TestLoading : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        json = DataReader.ReadJSONFromFile(path);
+        //Test Json
+        json = DataReader.ReadJSONFromFile(jsonPath, jsonExt);
         Debug.Log(DataReader.ParseJSON(json, keys, false, arrayKeys));
+
+        //Test CSV
+        var csvResults = DataReader.ReadCSVFromFile(csvPath, csvExt);
+        var csvKeys = csvResults[0].Keys;
+        foreach (string key in csvKeys)
+        {
+            Debug.Log(key);
+        }
+
+        //Test Conversion
+        var converted = DataReader.ConvertCSVToJSON(csvResults);
+        Debug.Log(converted);
     }
 }

@@ -68,9 +68,9 @@ namespace DataReaders
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static JSONObject ReadJSONFromFile(string path)
+        public static JSONObject ReadJSONFromFile(string filename, string extenstion)
         {
-            string jsonString = LoadResourceTextfile(path);
+            string jsonString = LoadResourceTextfile(filename, extenstion);
 
             JSONObject JSON = new JSONObject(jsonString);
             return JSON;
@@ -82,10 +82,10 @@ namespace DataReaders
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static List<Dictionary<string, object>> ReadCSVFromFile(string path)
+        public static List<Dictionary<string, object>> ReadCSVFromFile(string filename, string extension)
         {
             var list = new List<Dictionary<string, object>>();
-            string data = LoadResourceTextfile(path);
+            string data = LoadResourceTextfile(filename, extension);
 
             var lines = Regex.Split(data, LINE_SPLIT_RE);
 
@@ -137,35 +137,63 @@ namespace DataReaders
                 var innerDict = dict[i];
                 foreach (string key in innerDict.Keys)
                 {
+                    string finalKey = key;
+
+                    if (key == "" || key.Length == 0 || key == null)
+                    {
+                        continue;
+                    }
+                    if (key.Contains("\""))
+                    {
+                        finalKey = key.Replace("\"", "");
+                    }
+
                     var item = innerDict[key];
+
+
+                    if (item == null)
+                    {
+                        continue;
+                    }
+
                     Type itemType = item.GetType();
 
                     if (itemType == typeof(float))
                     {
                         float finalItem = (float)item;
-                        innerJson.AddField(key, finalItem);
+                        innerJson.AddField(finalKey, finalItem);
                     }
                     else if (itemType == typeof(int))
                     {
                         int finalItem = (int)item;
-                        innerJson.AddField(key, finalItem);
+                        innerJson.AddField(finalKey, finalItem);
                     }
                     else if (itemType == typeof(string))
                     {
                         string finalItem = (string)item;
-                        innerJson.AddField(key, finalItem);
+                        if (finalItem.Length == 0 || finalItem == null || finalItem == "")
+                        {
+                            continue;
+                        }
+
+                        if (finalItem.Contains("\""))
+                        {
+                            finalItem = finalItem.Replace("\"", "");
+                        }
+
+                        innerJson.AddField(finalKey, finalItem);
                     }
                     else if (itemType == typeof(bool))
                     {
                         bool finalItem = (bool)item;
-                        innerJson.AddField(key, finalItem);
+                        innerJson.AddField(finalKey, finalItem);
                     }
                     else
                     {
                         throw new Exception("Could not determine type of item in CSV File. Must be a number, string, or bool");
                     }
                 }
-                masterJson.Add(innerJson);
+                masterJson.AddField(i.ToString(), innerJson);
             }
             return masterJson;
         }
@@ -175,9 +203,9 @@ namespace DataReaders
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static string LoadResourceTextfile(string path)
+        public static string LoadResourceTextfile(string path, string ext)
         {
-            string filePath = $"Data/{path.Replace(".json", "")}";
+            string filePath = $"Data/{path.Replace(ext, "")}";
 
             TextAsset targetFile = Resources.Load<TextAsset>(filePath);
 
