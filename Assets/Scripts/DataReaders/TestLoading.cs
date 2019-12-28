@@ -38,6 +38,6 @@ public class TestLoading : MonoBehaviour
 
         //Test Conversion
         var converted = DataReader.ConvertCSVToJSON(csvResults);
-        Debug.Log(converted);
+        Debug.Log(converted.CreateString());
     }
 }

@@ -108,6 +108,12 @@ namespace DataReaders
         public static JValue ReadJSONFromFile(string filename, string extenstion)
         {
             string jsonString = LoadResourceTextfile(filename, extenstion);
+            JValue json = TryParseJSONOrArray(jsonString);
+            return json;
+        }
+
+        public static JValue TryParseJSONOrArray(string jsonString)
+        {
             JValue json;
             try
             {
@@ -125,7 +131,6 @@ namespace DataReaders
                 }
             }
             return json;
-            
         }
 
         /// <summary>
@@ -177,7 +182,7 @@ namespace DataReaders
         /// </summary>
         /// <param name="dict"></param>
         /// <returns></returns>
-        public static JSONObject ConvertCSVToJSON(List<Dictionary<string, object>> dict)
+        public static JValue ConvertCSVToJSON(List<Dictionary<string, object>> dict)
         {
             JSONObject masterJson = new JSONObject();
 
@@ -251,7 +256,8 @@ namespace DataReaders
                 }
                 masterJson.Add(innerJson);
             }
-            return masterJson;
+            string stringifiedJSON = masterJson.ToString();
+            return TryParseJSONOrArray(stringifiedJSON);
         }
 
         /// <summary>
