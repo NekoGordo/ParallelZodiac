@@ -1,0 +1,51 @@
+[
+    {
+        "trackname": "Diss Track",
+        "tracktype": "Support",
+        "trackvalue": 30,
+        "additionalvalue": "mc",
+        "trackdetails": "A diss track"
+    },
+    {
+        "trackname": "Weak Intro",
+        "tracktype": "Attack",
+        "trackvalue": 1,
+        "additionalvalue": "none",
+        "trackdetails": "An intro with no hype"
+    },
+    {
+        "trackname": "Strong Intro",
+        "tracktype": "Attack",
+        "trackvalue": 3,
+        "additionalvalue": "none",
+        "trackdetails": "Bars!"
+    },
+    {
+        "trackname": "Interlude",
+        "tracktype": "Support",
+        "trackvalue": 25,
+        "additionalvalue": "hp",
+        "trackdetails": "Jazzy Interlude"
+    },
+    {
+        "trackname": "Banger",
+        "tracktype": "Support",
+        "trackvalue": 30,
+        "additionalvalue": "hype",
+        "trackdetails": "It's a banger"
+    },
+    {
+        "trackname": "Smooth Hook",
+        "tracktype": "Defend",
+        "trackvalue": 3,
+        "additionalvalue": "none",
+        "trackdetails": "goes down easy"
+    },
+    {
+        "trackname": "Lyrical Genuis",
+        "tracktype": "Magic",
+        "trackvalue": 5,
+        "additionalvalue": "none",
+        "trackdetails": "word play"
+    }
+]

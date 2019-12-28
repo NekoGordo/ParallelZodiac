@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DataReaders;
+using Leguar.TotalJSON;
 
 public class TestLoading : MonoBehaviour
 {
@@ -17,14 +18,15 @@ public class TestLoading : MonoBehaviour
     private string[] keys;
     [SerializeField]
     private int[] arrayKeys;
-    private JSONObject json;
+    private JValue json;
 
     // Start is called before the first frame update
     void Start()
     {
         //Test Json
         json = DataReader.ReadJSONFromFile(jsonPath, jsonExt);
-        Debug.Log(DataReader.ParseJSON(json, keys, false, arrayKeys));
+        var displayJSON = DataReader.ParseJSON(json, keys, false, arrayKeys);
+        Debug.Log(displayJSON.CreateString());
 
         //Test CSV
         var csvResults = DataReader.ReadCSVFromFile(csvPath, csvExt);
