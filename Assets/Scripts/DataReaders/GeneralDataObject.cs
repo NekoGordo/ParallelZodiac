@@ -7,6 +7,13 @@ using UnityEngine;
 public class ValueMap
 {
     public List<string> Keys;
+    public List<float> Values;
+}
+
+[Serializable]
+public class StringValueMap
+{
+    public List<string> Keys;
     public List<string> Values;
 }
 
@@ -35,7 +42,7 @@ public class GeneralDataObject : ScriptableObject, ISerializationCallbackReceive
                 Debug.Log("More keys than values, adding needed values");
                 while (valueMap.Keys.Count > valueMap.Values.Count)
                 {
-                    valueMap.Values.Add("");
+                    valueMap.Values.Add(0);
                 }
             }
         }

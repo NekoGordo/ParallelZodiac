@@ -245,7 +245,8 @@ MonoBehaviour:
   csvPath: Stats_to_Level
   jsonExt: .json
   csvExt: .csv
-  keys: []
+  keys:
+  - trackvalue
   arrayKeys: 03000000
 --- !u!4 &728430732
 Transform:

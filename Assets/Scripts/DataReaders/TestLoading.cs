@@ -43,6 +43,24 @@ public class TestLoading : MonoBehaviour
         var converted = DataReader.ConvertCSVToJSON(csvResults);
         Debug.Log(converted );
 
-        Debug.Log(data.valueMap.Keys.Count);
+
+        //Write to scriptable object
+        data.valueMap.Keys.Clear();
+        data.valueMap.Values.Clear();
+
+        for (int i = 0; i < keys.Length; i++)
+        {
+            data.valueMap.Keys.Add(keys[i]);
+            if (displayJSON.IsArray)
+            {
+                data.valueMap.Values.Add(displayJSON[i].n);
+            }
+            else
+            {
+                data.valueMap.Values.Add(displayJSON.n);
+            }
+        }
+
+        Debug.Log(data.valueMap.Keys);
     }
 }
