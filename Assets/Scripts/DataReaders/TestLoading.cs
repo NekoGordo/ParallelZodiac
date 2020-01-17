@@ -18,7 +18,7 @@ public class TestLoading : MonoBehaviour
     private string[] keys;
     [SerializeField]
     private int[] arrayKeys;
-    private JValue json;
+    private JSONObject json;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,7 @@ public class TestLoading : MonoBehaviour
         //Test Json
         json = DataReader.ReadJSONFromFile(jsonPath, jsonExt);
         var displayJSON = DataReader.ParseJSON(json, keys, false, arrayKeys);
-        Debug.Log(displayJSON.CreateString());
+        Debug.Log(displayJSON);
 
         //Test CSV
         var csvResults = DataReader.ReadCSVFromFile(csvPath, csvExt);
@@ -38,6 +38,6 @@ public class TestLoading : MonoBehaviour
 
         //Test Conversion
         var converted = DataReader.ConvertCSVToJSON(csvResults);
-        Debug.Log(converted.CreateString());
+        Debug.Log(converted);
     }
 }

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
-using Leguar.TotalJSON;
 
 
 namespace DataReaders
@@ -25,78 +24,69 @@ namespace DataReaders
         /// <param name="returnArray"> Set this to true if you want to return an array from a key, otherwise the assumption is you want to dive into the array. Must provide an array key when true</param>/param>
         /// <param name="arrayKeys">Indices into nested arrays, keys are read in order as this function encounters arrays</param>
         /// <returns></returns>
-        public static JValue ParseJSON(JValue json, string[] keys, bool returnArray = false, int[] arrayKeys = null)
+        public static JSONObject ParseJSON(JSONObject json, string[] keys, bool returnArray = false, int[] arrayKeys = null)
         {
-            
-            JSON jsonObjectHolder;
+
+            JSONObject jsonObjectHolder = json;
             int arrayKeyIndex = 0;
-            JArray jsonArray;
+            int keyIndex = 0;
             //Ensure that we have keys into the json object unless we're indexing into an immediate array
             if (keys.Length < 1)
             {
-                if (json is JArray)
-                {
-                    jsonArray = json as JArray;
-                    //We either don't want to return an array so we need to update the object holder
-                    //Or we want to return an array but not this one
-                    if (!returnArray || (returnArray && (arrayKeys != null && arrayKeys.Length > 0)))
-                    {
-                        jsonObjectHolder = jsonArray.GetJSON(arrayKeys[arrayKeyIndex]);
-                        arrayKeyIndex++;
-                    }
-                    else if(arrayKeys == null || arrayKeys.Length < 1)
-                    {
-                        return jsonArray;
-                    }
-                }
-                else
+                if (arrayKeys == null)
                 {
                     throw new ArgumentException("Must provided a set of keys to parse with. Must be an array and cannot be empty", "Keys");
                 }
-            }
-
-
-            if (json is JSON)
-            {
-                jsonObjectHolder = json as JSON;
-                if (keys.Length == 1)
-                {
-                    return jsonObjectHolder.Get(keys[0]);
-                }
                 else
                 {
-                    jsonObjectHolder = jsonObjectHolder.GetJSON(keys[0]);
+                    jsonObjectHolder = jsonObjectHolder[arrayKeys[arrayKeyIndex]];
+                    arrayKeyIndex++;
                 }
             }
-            else if (json is JArray)
+            else if (jsonObjectHolder.IsArray)
             {
-                jsonArray = json as JArray;
-                jsonObjectHolder = jsonArray.GetJSON(arrayKeys[arrayKeyIndex]);
+                jsonObjectHolder = jsonObjectHolder[arrayKeys[arrayKeyIndex]];
                 arrayKeyIndex++;
             }
-            else
+
+            //If we only have one key and no array keys return the first object. 
+            if (keys.Length == 1 && (arrayKeys == null || arrayKeys.Length < 1))
             {
-                throw new Exception("Could not determine JSON object type");
+                return jsonObjectHolder.GetField(keys[0]);
             }
-           
-            //Now loop throw our keys into the json and dig as deep as we into to get a JValue
-            for (int i = 1; i < keys.Length; i++)
+            else if (keys.Length > 0)
             {
-                JValue temp = jsonObjectHolder.Get(keys[i]);
+                jsonObjectHolder = jsonObjectHolder.GetField(keys[keyIndex]);
+                keyIndex++;
+            }
+
+            //Now loop throw our keys into the json and dig as deep as we into to get a value
+            for (int i = keyIndex; i < keys.Length; i++)
+            {
+                JSONObject temp = jsonObjectHolder.GetField(keys[i]);
 
                 //If they field we grabbed turned out to be an array, we'll want to grab our desired index;
-                if (temp is JArray)
+                while (temp.IsArray && arrayKeyIndex < arrayKeys.Length)
                 {
                     if (!returnArray && (arrayKeys == null || arrayKeyIndex >= arrayKeys.Length))
                     {
                         throw new ArgumentException("Array keys cannot be null when attempting to access array objects. Array Keys must also be equal to the number of arrays you're attemtpting to access", "ArrayKeys");
                     }
                     int index = arrayKeys[arrayKeyIndex];
-                    JArray tempArray = temp as JArray;
-                    jsonObjectHolder = tempArray[index] as JSON;
+                    jsonObjectHolder = temp[index];
+                    arrayKeyIndex++;
                 }
-
             }
+
+            //Finally if we've gone through all of our keys but still have an array to dig through let's handle that. 
+            if (arrayKeyIndex < arrayKeys.Length)
+            {
+                while(jsonObjectHolder.IsArray && arrayKeyIndex < arrayKeys.Length)
+                jsonObjectHolder = jsonObjectHolder[arrayKeyIndex];
+                arrayKeyIndex++;
+            }
+
+
             return jsonObjectHolder;
         }
 
@@ -105,33 +95,13 @@ namespace DataReaders
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public static JValue ReadJSONFromFile(string filename, string extenstion)
+        public static JSONObject ReadJSONFromFile(string filename, string extenstion)
         {
             string jsonString = LoadResourceTextfile(filename, extenstion);
-            JValue json = TryParseJSONOrArray(jsonString);
+            JSONObject json = new JSONObject(jsonString);
             return json;
         }
 
-        public static JValue TryParseJSONOrArray(string jsonString)
-        {
-            JValue json;
-            try
-            {
-                json = JSON.ParseString(jsonString);
-            }
-            catch
-            {
-                try
-                {
-                    json = JArray.ParseString(jsonString);
-                }
-                catch
-                {
-                    throw new Exception("Cannot parse file as JSON or Array please check file for errors and try again.");
-                }
-            }
-            return json;
-        }
 
         /// <summary>
         /// Reads a CSV file and returns it as a dictionary
@@ -182,7 +152,7 @@ namespace DataReaders
         /// </summary>
         /// <param name="dict"></param>
         /// <returns></returns>
-        public static JValue ConvertCSVToJSON(List<Dictionary<string, object>> dict)
+        public static JSONObject ConvertCSVToJSON(List<Dictionary<string, object>> dict)
         {
             JSONObject masterJson = new JSONObject();
 
@@ -200,7 +170,7 @@ namespace DataReaders
                     {
                         continue;
                     }
-                    
+
                     //Remove escapre characters from the key string
                     if (key.Contains("\""))
                     {
@@ -256,8 +226,7 @@ namespace DataReaders
                 }
                 masterJson.Add(innerJson);
             }
-            string stringifiedJSON = masterJson.ToString();
-            return TryParseJSONOrArray(stringifiedJSON);
+            return masterJson;
         }
 
         /// <summary>

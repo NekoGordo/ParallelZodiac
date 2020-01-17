@@ -240,12 +240,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7632c7f70622167489a11db0b30b1534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonPath: Test
+  jsonPath: dummyTrackData
   csvPath: Stats_to_Level
   jsonExt: .json
   csvExt: .csv
-  keys:
-  - lines
+  keys: []
   arrayKeys: 03000000
 --- !u!4 &728430732
 Transform:
