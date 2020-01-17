@@ -86,7 +86,6 @@ namespace DataReaders
                 arrayKeyIndex++;
             }
 
-
             return jsonObjectHolder;
         }
 

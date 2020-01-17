@@ -6,6 +6,9 @@ using Leguar.TotalJSON;
 
 public class TestLoading : MonoBehaviour
 {
+
+    public GeneralDataObject data;
+
     [SerializeField]
     private string jsonPath;
     [SerializeField]
@@ -38,6 +41,8 @@ public class TestLoading : MonoBehaviour
 
         //Test Conversion
         var converted = DataReader.ConvertCSVToJSON(csvResults);
-        Debug.Log(converted);
+        Debug.Log(converted );
+
+        Debug.Log(data.valueMap.Keys.Count);
     }
 }
