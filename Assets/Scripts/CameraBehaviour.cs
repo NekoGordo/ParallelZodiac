@@ -18,7 +18,8 @@ public class CameraBehaviour : MonoBehaviour
     public float MIN_CAM_DIST = 2.5f, 
                  MAX_CAM_DIST = 10;
 
-    public float MAX_VERTICAL_ANGLE = 30;
+    public float MIN_VERTICAL_ANGLE = 15,
+                 MAX_VERTICAL_ANGLE = 60;
     #endregion
 
     #region Fields
@@ -69,6 +70,7 @@ public class CameraBehaviour : MonoBehaviour
         else
             ProjectCamCoordinates(true);
         Camera_Move();
+        Camera_Zoom();
         Camera_Update();
         
     }
@@ -80,6 +82,12 @@ public class CameraBehaviour : MonoBehaviour
     {
         sphericalPos.y += Input.GetAxisRaw("Mouse Y") * camRotSpd;
         sphericalPos.z += Input.GetAxisRaw("Mouse X") * camRotSpd;
+        ConstrainCamera();
+    }
+
+    void Camera_Zoom()
+    {
+        sphericalPos.x -= Input.GetAxisRaw("Mouse ScrollWheel") * zoomSpd;
         ConstrainCamera();
     }
 
@@ -119,6 +127,8 @@ public class CameraBehaviour : MonoBehaviour
     ///</summary>
     void ConstrainCamera()
     {
+        if (sphericalPos.x < MIN_CAM_DIST) sphericalPos.x = MIN_CAM_DIST;
+        else if (sphericalPos.x > MAX_CAM_DIST) sphericalPos.x = MAX_CAM_DIST;
         // Constrain vertical angle, phi, to be the maximum angle out from the horizon on either side
         if (sphericalPos.y < BASE_VERTICAL_ANGLE - MAX_VERTICAL_ANGLE) sphericalPos.y = BASE_VERTICAL_ANGLE - MAX_VERTICAL_ANGLE;
         else if (sphericalPos.y > BASE_VERTICAL_ANGLE + MAX_VERTICAL_ANGLE) sphericalPos.y = BASE_VERTICAL_ANGLE + MAX_VERTICAL_ANGLE;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerCollisionDetection))]
+
 public class PlayerBehaviour : MonoBehaviour
 {
     public float GRAVITY = 9.8f;
@@ -12,23 +13,28 @@ public class PlayerBehaviour : MonoBehaviour
     public float MIN_CHR_SPD = 1,
                  MAX_CHR_SPD = 10,
 
+
+                 MIN_CLIMB_SPD = 1,
+                 MAX_CLIMB_SPD = 10,
+
+                 MIN_SWIM_SPD = 1,
+                 MAX_SWIM_SPD = 10,
+
                  MIN_SPRINT = 1.1f,
                  MAX_SPRINT = 3.5f,
 
                  MIN_SNEAK = 0.1f,
                  MAX_SNEAK = 0.9f,
 
-                 
-                
-                 MIN_JUMP_TIME = 2,
-                 MAX_JUMP_TIME = 8,
+                 MIN_JUMP_VAL = 0,
+                 MAX_JUMP_VAL = 1,
 
                  MIN_CLIMB_ANGLE = 30,
-                 MAX_CLIMB_ANGLE = 90;
+                 MAX_CLIMB_ANGLE = 90;                 
 
 
 
-    public float moveSpd, sprintFactor, sneakFactor, /*jumpStep, jumpTime,*/ jump, airDelay, climbAngle, dragSpeed, gravityAdd;
+    public float moveSpd, climbSpd, swimSpd, sprintFactor, sneakFactor, jump, airDelay, climbAngle, dragSpeed, gravityAdd;
 
     public bool moving, canClimb, climbing, canSwim, swimming, canJump, jumping, sprinting, sneaking, acting, attacking;
 
@@ -62,7 +68,8 @@ public class PlayerBehaviour : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (!collisionDetection.grounded && !climbing && !swimming && !jumping) Gravity();
+        if (!collisionDetection.grounded && !climbing && !swimming && !jumping)
+            Gravity();
         GetJumpInput();
         if (collisionDetection.groundAngle < climbAngle)
         {
@@ -83,7 +90,6 @@ public class PlayerBehaviour : MonoBehaviour
             Physics.gravity = Vector3.up * -GRAVITY;
         if(collisionDetection.hitCeiling)
         {
-            canJump = false;
             if(jumping)
             {
                 jumping = false;
@@ -117,10 +123,10 @@ public class PlayerBehaviour : MonoBehaviour
         {
             // Face the forward direction
             transform.rotation = Quaternion.LookRotation(new Vector3(newForward.x, 0, newForward.z));
-            if (Physics.Raycast(transform.position, transform.forward, out collisionDetection.wallHits[0], collisionDetection.width + collisionDetection.collisionPadding))
-                collisionDetection.hitWall_forward = true;
-            else
-                collisionDetection.hitWall_forward = false;
+            //if (Physics.Raycast(transform.position, transform.forward, out collisionDetection.wallHits[0], collisionDetection.width + collisionDetection.collisionPadding))
+            //    collisionDetection.hitWall_forward = true;
+            //else
+            //    collisionDetection.hitWall_forward = false;
 
             // Calculate the forward orientation as a cross of the ground normal and the player's right direction
             if (collisionDetection.groundHit.normal != Vector3.zero)
@@ -138,20 +144,22 @@ public class PlayerBehaviour : MonoBehaviour
             
         }
 
-        if (!collisionDetection.hitWall_forward)
-        {
-            transform.position += playerMove;
-        }
-        else
-        {
-            if (playerMove != Vector3.zero)
-            {
-                transform.position += Vector3.Cross(collisionDetection.wallHits[0].normal, Vector3.up) * Mathf.Sign(Vector3.SignedAngle(-collisionDetection.wallHits[0].normal, transform.forward, Vector3.up)) * Time.deltaTime;
-            }
-            else
-            {
-            }
-        }
+        transform.position += playerMove;
+
+        //if (!collisionDetection.hitWall_forward)
+        //{
+        //    transform.position += playerMove;
+        //}
+        //else
+        //{
+        //    if (playerMove != Vector3.zero)
+        //    {
+        //        transform.position += Vector3.Cross(collisionDetection.wallHits[0].normal, Vector3.up) * Mathf.Sign(Vector3.SignedAngle(-collisionDetection.wallHits[0].normal, transform.forward, Vector3.up)) * Time.deltaTime;
+        //    }
+        //    else
+        //    {
+        //    }
+        //}
     }
 
     /// <summary>
@@ -212,9 +220,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     void GetJumpInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canJump == true)
+        if (Input.GetKeyDown(KeyCode.Space) && collisionDetection.grounded == true && jumping == false && canJump == true)
         {
-            canJump = false;
             StartCoroutine(Jump());
         }
     }
