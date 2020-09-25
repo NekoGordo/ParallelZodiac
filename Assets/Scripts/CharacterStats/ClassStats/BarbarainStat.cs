@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BarbarainStat : BaseStat {
 
-	public void Barbarain(){
+	public BarbarainStat(){
 		ClassName = "Barbarain";
 		Force = 29;
 		Vitality = 28;
@@ -14,7 +14,4 @@ public class BarbarainStat : BaseStat {
 		Rationale = 13;
 		Charisma = 5;
 	}
-    public BarbarainStat () {
-        Barbarain ();
-    }
 }

@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Aquarius : Zodiac {
+public class Aquarius :  BaseAquarius{
     public Aquarius()
     {
-        GenerateStat();
-    
         StarSign = "Aquarius";
         Force = low;
         Fortitude = medium;

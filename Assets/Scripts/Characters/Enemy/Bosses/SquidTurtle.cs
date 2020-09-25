@@ -22,8 +22,6 @@ public class SquidTurtle : Enemy {
 
     private void Awake()
     {
-        CreateSignNumber();
-
         mon = new MonsterStat();
 
         myStats.Name = "SquidTurtle";

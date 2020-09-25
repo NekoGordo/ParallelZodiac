@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GeomancerStat : BaseStat {
 
-	public void Geomancer(){
+	public GeomancerStat(){
 		ClassName = "Geomancer";
 		Force = 27;
 		Vitality = 27;
@@ -14,7 +14,4 @@ public class GeomancerStat : BaseStat {
 		Rationale = 29;
 		Charisma = 14;
 	}
-    public GeomancerStat () {
-        Geomancer ();
-    }
 }

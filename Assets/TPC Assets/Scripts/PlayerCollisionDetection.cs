@@ -140,7 +140,6 @@ public class PlayerCollisionDetection : MonoBehaviour
                 transform.position = groundHit.point + Vector3.up * height;
             }
             grounded = true;
-            playerScript.canJump = true;
             playerScript.jumping = false;
             falling = false;
             playerScript.StopAllCoroutines();
@@ -148,7 +147,6 @@ public class PlayerCollisionDetection : MonoBehaviour
         else
         {
             grounded = false;
-            playerScript.canJump = false;
         }
     }
 
@@ -170,14 +168,14 @@ public class PlayerCollisionDetection : MonoBehaviour
 
     void UpdateCollisionVectors()
     {
-        forward = transform.forward * width;
-        forwardRight = (transform.forward + transform.right).normalized * width;
-        right = transform.right * width;
-        backRight = (transform.right - transform.forward).normalized * width;
-        back = -transform.forward * width;
-        backLeft = -(transform.forward + transform.right).normalized * width;
-        left = -transform.right * width;
-        forwardLeft = (transform.forward - transform.right).normalized * width;
+        forward = transform.forward;
+        forwardRight = (transform.forward + transform.right).normalized;
+        right = transform.right;
+        backRight = (transform.right - transform.forward).normalized;
+        back = -transform.forward;
+        backLeft = -(transform.forward + transform.right).normalized;
+        left = -transform.right;
+        forwardLeft = (transform.forward - transform.right).normalized;
     }
 
     void CheckCollisions_Walls()
@@ -191,7 +189,7 @@ public class PlayerCollisionDetection : MonoBehaviour
         if (wallHits.Length == SMALL_COLLIDER_WALLCHECKS)
         {
             Wallcast(ref colliDir, ref colPt); // Check from center
-            if (colliDir != RaycastDirection.NULL)
+            if (colliDir != RaycastDirection.NULL && !TestIncline())
             {
                 Debug.Log("Collision detected in " + GetCollisionDirection(colliDir) + " direction");
                 WallDisplace(colliDir, colPt);
@@ -200,12 +198,17 @@ public class PlayerCollisionDetection : MonoBehaviour
         else
         {
             Wallcast(ref colliDir, ref colPos, ref colPt); // Check from groin, center, and head
-            if (colliDir != RaycastDirection.NULL)
+            if (colliDir != RaycastDirection.NULL && !TestIncline())
             {
                 Debug.Log("Collision Detected at " + GetCollisionPosition(colPos) + ", " + GetCollisionDirection(colliDir) + " direction");
                 WallDisplace(colliDir, colPos, colPt);
             }
         }
+    }
+
+    bool TestIncline()
+    {
+        return grounded && (groundAngle > 0 && groundAngle < 90);
     }
 
     /// <summary>
@@ -343,7 +346,7 @@ public class PlayerCollisionDetection : MonoBehaviour
 
     void WallDisplace(RaycastDirection dir, RaycastPosition pos, Vector3 collisionPt)
     {
-        Vector3 displaceDir = DisplaceDirection(dir);
+        Vector3 displaceDir = DisplaceDirection(dir).normalized * width;
         float posDisplace = DisplacePosition(pos);
         transform.position = (collisionPt - (Vector3.up * posDisplace)) - displaceDir;
     }

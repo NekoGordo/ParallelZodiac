@@ -51,7 +51,7 @@ public class Dialog : MonoBehaviour {
 		there is a seperate script that works better*/
 		
 		if(test.closesntNpc.gameObject.name != this.gameObject.name){
-			isClose = false;
+			return;
 		}
 
 		var dist = Vector3.Distance(test.closesntNpc.gameObject.transform.position, player.transform.position);

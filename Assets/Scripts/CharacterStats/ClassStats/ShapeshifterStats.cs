@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShapeshifterStats : BaseStat {
 
-	public void Shapeshifter(){
+	public ShapeshifterStats(){
 		ClassName = "Shapehifter";
 		Force = 17;
 		Vitality = 17;
@@ -14,7 +14,4 @@ public class ShapeshifterStats : BaseStat {
 		Rationale = 17;
 		Charisma = 17;
 	}
-    public ShapeshifterStats () {
-        Shapeshifter ();
-    }
 }

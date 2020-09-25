@@ -19,6 +19,8 @@ public class SpiritBird : Enemy
     Serpentarius serp;
     Taurus taur;
     Virgo virg;
+
+    int starNum;
     //stats
     public int MBForce = 8;
     public int MBVitality = 1;
@@ -30,8 +32,7 @@ public class SpiritBird : Enemy
 
     private void Awake()
     {
-        CreateSignNumber();
-
+        starNum =Random.Range(0,12);
         mon = new MonsterStat();
 
         aqua = new Aquarius();
@@ -48,7 +49,7 @@ public class SpiritBird : Enemy
         taur = new Taurus();
         virg = new Virgo();
 
-        if (SignNumber == 1)
+        if (starNum == 0)
         {
             myStats.Name = "Taeni (Spirit Bird)";
             myStats.Force = mon.Force + aqua.Force + MBForce;
@@ -59,7 +60,7 @@ public class SpiritBird : Enemy
             myStats.Rationale = mon.Rationale + aqua.Rational + MBRational;
             myStats.Charisma = mon.Charisma + aqua.Charisma + MBCharima;
         }
-        if (SignNumber == 2)
+        if (starNum == 1)
         {
             myStats.Name = "Taeni (Spirit Bird)";
             myStats.Force = mon.Force + arie.Force + MBForce;
@@ -70,7 +71,7 @@ public class SpiritBird : Enemy
             myStats.Rationale = mon.Rationale + arie.Rational + MBRational;
             myStats.Charisma = mon.Charisma + arie.Charisma + MBCharima;
         }
-        if (SignNumber == 3)
+        if (starNum == 2)
         {
             myStats.Name = "Taeni (Spirit Bird)";
             myStats.Force = mon.Force + can.Force + MBForce;
@@ -81,7 +82,7 @@ public class SpiritBird : Enemy
             myStats.Rationale = mon.Rationale + can.Rational + MBRational;
             myStats.Charisma = mon.Charisma + can.Charisma + MBCharima;
         }
-        if (SignNumber == 4)
+        if (starNum == 3)
         {
             myStats.Name = "Taeni (Spirit Bird)";
             myStats.Force = mon.Force + cap.Force + MBForce;
@@ -92,7 +93,7 @@ public class SpiritBird : Enemy
             myStats.Rationale = mon.Rationale + cap.Rational + MBRational;
             myStats.Charisma = mon.Charisma + cap.Charisma + MBCharima;
         }
-        if (SignNumber == 5)
+        if (starNum == 4)
         {
             myStats.Name = "Taeni (Spirit Bird)";
             myStats.Force = mon.Force + gem.Force + MBForce;
@@ -103,7 +104,7 @@ public class SpiritBird : Enemy
             myStats.Rationale = mon.Rationale + gem.Rational + MBRational;
             myStats.Charisma = mon.Charisma + gem.Charisma + MBCharima;
         }
-        if (SignNumber == 6)
+        if (starNum == 5)
         {
             myStats.Name = "Taeni (Spirit Bird)";
             myStats.Force = mon.Force + leo.Force + MBForce;
@@ -114,7 +115,7 @@ public class SpiritBird : Enemy
             myStats.Rationale = mon.Rationale + leo.Rational + MBRational;
             myStats.Charisma = mon.Charisma + leo.Charisma + MBCharima;
         }
-        if (SignNumber == 7)
+        if (starNum == 6)
         {
             myStats.Name = "Taeni (Spirit Bird)";
             myStats.Force = mon.Force + lib.Force + MBForce;
@@ -125,7 +126,7 @@ public class SpiritBird : Enemy
             myStats.Rationale = mon.Rationale + lib.Rational + MBRational;
             myStats.Charisma = mon.Charisma + lib.Charisma + MBCharima;
         }
-        if (SignNumber == 8)
+        if (starNum == 7)
         {
             myStats.Name = "Taeni (Spirit Bird)";
             myStats.Force = mon.Force + pisc.Force + MBForce;
@@ -136,7 +137,7 @@ public class SpiritBird : Enemy
             myStats.Rationale = mon.Rationale + pisc.Rational + MBRational;
             myStats.Charisma = mon.Charisma + pisc.Charisma + MBCharima;
         }
-        if (SignNumber == 9)
+        if (starNum == 8)
         {
             myStats.Name = "Taeni (Spirit Bird)";
             myStats.Force = mon.Force + sagi.Force + MBForce;
@@ -147,7 +148,7 @@ public class SpiritBird : Enemy
             myStats.Rationale = mon.Rationale + sagi.Rational + MBRational;
             myStats.Charisma = mon.Charisma + sagi.Charisma + MBCharima;
         }
-        if (SignNumber == 10)
+        if (starNum == 9)
         {
             myStats.Name = "Taeni (Spirit Bird)";
             myStats.Force = mon.Force + scrop.Force + MBForce;
@@ -158,7 +159,7 @@ public class SpiritBird : Enemy
             myStats.Rationale = mon.Rationale + scrop.Rational + MBRational;
             myStats.Charisma = mon.Charisma + scrop.Charisma + MBCharima;
         }
-        if (SignNumber == 11)
+        if (starNum == 10)
         {
             myStats.Name = "Taeni (Spirit Bird)";
             myStats.Force = mon.Force + serp.Force + MBForce;
@@ -169,7 +170,7 @@ public class SpiritBird : Enemy
             myStats.Rationale = mon.Rationale + serp.Rational + MBRational;
             myStats.Charisma = mon.Charisma + serp.Charisma + MBCharima;
         }
-        if (SignNumber == 12)
+        if (starNum == 11)
         {
             myStats.Name = "Taeni (Spirit Bird)";
             myStats.Force = mon.Force + taur.Force + MBForce;
@@ -180,7 +181,7 @@ public class SpiritBird : Enemy
             myStats.Rationale = mon.Rationale + taur.Rational + MBRational;
             myStats.Charisma = mon.Charisma + taur.Charisma + MBCharima;
         }
-        if (SignNumber == 13)
+        if (starNum == 12)
         {
             myStats.Name = "Taeni (Spirit Bird)";
             myStats.Force = mon.Force + virg.Force + MBForce;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScoutStat : BaseStat {
 
-	public void Scout(){
+	public ScoutStat(){
 		ClassName = "Scout";
 		Force = 18;
 		Vitality = 18;
@@ -14,7 +14,4 @@ public class ScoutStat : BaseStat {
 		Rationale = 18;
 		Charisma = 18;
 	}
-    public ScoutStat () {
-        Scout ();
-    }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonkStat : BaseStat {
 
-	public void Monk(){
+	public MonkStat(){
 		ClassName = "Monk";
 		Force = 30;
 		Vitality = 32;
@@ -14,7 +14,4 @@ public class MonkStat : BaseStat {
 		Rationale = 32;
 		Charisma = 18;
 	}
-    public MonkStat () {
-        Monk ();
-    }
 }

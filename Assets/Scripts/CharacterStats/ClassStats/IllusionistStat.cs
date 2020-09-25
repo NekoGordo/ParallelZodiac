@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IllusionistStat : BaseStat {
 
-	public void Illusionist(){
+	public IllusionistStat(){
 		ClassName = "Illusionist";
 		Force = 9;
 		Vitality = 10;
@@ -14,7 +14,4 @@ public class IllusionistStat : BaseStat {
 		Rationale = 27;
 		Charisma = 18;
 	}
-    public IllusionistStat () {
-        Illusionist ();
-    }
 }

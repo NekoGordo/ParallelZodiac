@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DarkPaladinStat : BaseStat {
 
-	public void DarkPaladin(){
+	public DarkPaladinStat(){
 		ClassName = "DarkPaladin";
 		Force = 30;
 		Vitality = 30;
@@ -14,7 +14,4 @@ public class DarkPaladinStat : BaseStat {
 		Rationale = 30;
 		Charisma = 30;
 	}
-    public DarkPaladinStat () {
-        DarkPaladin ();
-    }
 }

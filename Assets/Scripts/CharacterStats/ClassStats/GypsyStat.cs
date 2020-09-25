@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GypsyStat : BaseStat{
 
-	public void Gypsy(){
+	public GypsyStat(){
 		ClassName = "Gypsy";
 		Force = 15;
 		Vitality = 13;
@@ -14,8 +14,4 @@ public class GypsyStat : BaseStat{
 		Rationale = 23;
 		Charisma = 31;
 	}
-    public GypsyStat () {
-        Gypsy ();
-
-    }
 }

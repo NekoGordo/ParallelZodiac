@@ -457,8 +457,6 @@ public class Combat : MonoBehaviour
         Characters[CharacterWithPriority].ReceivPriority();
     }
 
-
-
     private void NotifyAttack(string charName)
     {
         Debug.Log(charName + " Is able to attack at time " + Time.time);

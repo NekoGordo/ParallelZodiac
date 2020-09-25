@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WarMageStat : BaseStat {
 
-	public void WarMage(){
+	public WarMageStat(){
 		ClassName = "War-Mage";
 		Force = 21;
 		Vitality = 19;
@@ -14,7 +14,4 @@ public class WarMageStat : BaseStat {
 		Rationale = 22;
 		Charisma = 10;
 	}
-    public WarMageStat () {
-        WarMage ();
-    }
 }
