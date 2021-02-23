@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &709164448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 709164449}
+  m_Layer: 0
+  m_Name: Camera Anchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &709164449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709164448}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.16000009, y: 2.6299977, z: 2.55}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4770196245015094}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1006460468574406
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,6 +257,7 @@ GameObject:
   - component: {fileID: 95263763910880020}
   - component: {fileID: 136941242833908074}
   - component: {fileID: -4460909027099377485}
+  - component: {fileID: 8984400196761806652}
   m_Layer: 31
   m_Name: Shiro
   m_TagString: Shiro
@@ -245,6 +276,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 709164449}
   - {fileID: 4890196226835576}
   - {fileID: 4153683343344616}
   m_Father: {fileID: 0}
@@ -299,6 +331,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8984400196761806652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050944045947780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173d11c530a45674d922883008bb2518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanAct: 0
+  currentPri: {fileID: 0}
+  hasAttacked: 0
+  EnemyAttacked: 0
+  menu: {fileID: 0}
+  CBForce: 20
+  CBVitality: 23
+  CBAgility: 28
+  CBFortitude: 24
+  CBIntellect: 28
+  CBRational: 25
+  CBCharima: 24
 --- !u!1 &1078096355129858
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,7 +661,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4770196245015094}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &137154652269260966
 SkinnedMeshRenderer:
@@ -1554,7 +1610,7 @@ Transform:
   m_Children:
   - {fileID: 4299067300039654}
   m_Father: {fileID: 4770196245015094}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1702373161987188
 GameObject:

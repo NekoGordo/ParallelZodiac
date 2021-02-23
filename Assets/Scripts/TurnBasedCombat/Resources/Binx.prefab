@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 95263763910880020}
   - component: {fileID: 136941242833908074}
   - component: {fileID: 487211752}
+  - component: {fileID: 3902225592547201881}
   m_Layer: 31
   m_Name: Binx
   m_TagString: Binx
@@ -299,6 +300,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3902225592547201881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050944045947780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff956a822675474a9af817241f0ccf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myStats: {fileID: 0}
+  CanAct: 0
+  currentPri: {fileID: 0}
+  hasAttacked: 0
+  EnemyAttacked: 0
+  menu: {fileID: 0}
+  myStats: {fileID: 0}
+  CBForce: 18
+  CBVitality: 30
+  CBAgility: 22
+  CBFortitude: 30
+  CBIntellect: 29
+  CBRational: 26
+  CBCharima: 18
 --- !u!1 &1078096355129858
 GameObject:
   m_ObjectHideFlags: 0

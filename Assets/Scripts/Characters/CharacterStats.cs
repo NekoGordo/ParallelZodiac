@@ -15,7 +15,7 @@ public enum CharacterType
  * CharacterStats is a container for stats all character instances
  * that derive from BaseCharacter use. * 
  */
-public class CharacterStats
+public class CharacterStats : MonoBehaviour
 {
     public CharacterType myType;
 
@@ -28,18 +28,20 @@ public class CharacterStats
     public int Rationale;
     public int Charisma;
 
+    public int TotalAgility;
+
     public float AbilityPoints; //abillity points(magic damage)
     public float AttackDamage;  //attack damage
     public float MoralPoints;   //moral points
-    public float Defence;
+    public float Defence;       //defence
     public float MagicDefence;  //magic deffence
     public float AttackSpeed;   //attack speed
     public float TravelStamina; //helps with trvels
-    public float HealthPoints;
-    public float MaximumHealthPoints;
-    public float MaximumAttackBar;
-    public float MaximumAbilityPoints;
-    public float AttackBar;
+    public float HealthPoints;  //hp
+    public float MaximumHealthPoints;   //max hp
+    public float MaximumAttackBar;  //max attack bar - redunent
+    public float MaximumAbilityPoints;  //max ap
+    public float AttackBar; //attack bar - redundent
 }
 
 

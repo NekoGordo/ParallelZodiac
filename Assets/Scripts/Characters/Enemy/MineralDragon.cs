@@ -5,6 +5,7 @@ using UnityEngine;
 public class MineralDragon : Enemy
 {
     //scripts
+    BaseStat bs;
     MonsterStat mon;
     Aquarius aqua;
     Aries arie;
@@ -19,6 +20,8 @@ public class MineralDragon : Enemy
     Serpentarius serp;
     Taurus taur;
     Virgo virg;
+    public CharacterStats myStats;
+
 
     int starNum;
 
@@ -31,10 +34,14 @@ public class MineralDragon : Enemy
     public int MBRational = 32;
     public int MBCharima = 29;
 
-    private void Awake()
+    int count = 0;
+
+    private void Start()
     {
-        starNum = Random.Range(0,12);
+        bs = new BaseStat();
+        starNum = Random.Range(0, 12);
         mon = new MonsterStat();
+        myStats = new CharacterStats();
 
         aqua = new Aquarius();
         arie = new Aries();
@@ -195,6 +202,8 @@ public class MineralDragon : Enemy
             myStats.Charisma = mon.Charisma + virg.Charisma + MBCharima;
         }
 
+        myStats.TotalAgility = myStats.Agility;
+
         myStats.HealthPoints = (myStats.Vitality + myStats.Fortiude) / 2;
         myStats.AbilityPoints = (myStats.Force + myStats.Intellect) / 2;
         myStats.Defence = myStats.Vitality;
@@ -202,8 +211,9 @@ public class MineralDragon : Enemy
         myStats.AttackSpeed = myStats.Agility;
         myStats.MagicDefence = myStats.Rationale;
 
-        myStats.AttackBar = 0 / 100;
+        print("mineral speed" + myStats.TotalAgility);
 
+        myStats.AttackBar = 0 / 100;
         //HPthing
         myStats.MaximumHealthPoints = myStats.HealthPoints;
         myStats.HealthPoints = myStats.MaximumHealthPoints;
