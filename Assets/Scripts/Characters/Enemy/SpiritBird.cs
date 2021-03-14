@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpiritBird : Enemy
 {
     //scripts
-    BaseStat bs;
     MonsterStat mon;
     Aquarius aqua;
     Aries arie;
@@ -20,7 +19,6 @@ public class SpiritBird : Enemy
     Serpentarius serp;
     Taurus taur;
     Virgo virg;
-    public CharacterStats myStats;
 
     int starNum;
     //stats
@@ -31,13 +29,10 @@ public class SpiritBird : Enemy
     public int MBIntellect = 4;
     public int MBRational = 1;
     public int MBCharima = 6;
-    int count;
-    private void Start()
-    {
-        myStats = new CharacterStats();
 
-        bs = new BaseStat();
-        starNum = Random.Range(0, 12);
+    private void Awake()
+    {
+        starNum =Random.Range(0,12);
         mon = new MonsterStat();
 
         aqua = new Aquarius();
@@ -198,16 +193,12 @@ public class SpiritBird : Enemy
             myStats.Charisma = mon.Charisma + virg.Charisma + MBCharima;
         }
 
-        myStats.TotalAgility = myStats.Agility;
         myStats.HealthPoints = (myStats.Vitality + myStats.Fortiude) / 2;
         myStats.AbilityPoints = (myStats.Force + myStats.Intellect) / 2;
         myStats.Defence = myStats.Vitality;
         myStats.AttackDamage = myStats.Force;
         myStats.AttackSpeed = myStats.Agility;
         myStats.MagicDefence = myStats.Rationale;
-
-        print("birdy speed" + myStats.TotalAgility);
-
 
         myStats.AttackBar = 0 / 100;
 
@@ -222,4 +213,6 @@ public class SpiritBird : Enemy
         // AP bar increasre by timesing agility by time.deltatime
         // divide delta time * agility by 32 
     }
+
+    
 }

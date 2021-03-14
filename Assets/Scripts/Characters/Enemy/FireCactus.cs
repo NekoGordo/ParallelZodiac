@@ -15,13 +15,10 @@ public class FireCactus : Enemy
     Libra lib;
     Pisces pisc;
     Sagittarius sagi;
-    Scorpio scorp;
+    Scorpio scrop;
     Serpentarius serp;
     Taurus taur;
     Virgo virg;
-    BaseStat bs;
-    public CharacterStats myStats;
-
 
     //number for rng
     int starNum;
@@ -34,14 +31,11 @@ public class FireCactus : Enemy
     public int MBIntellect = 16;
     public int MBRational = 23;
     public int MBCharima = 22;
-    int count;
 
-    private void Start()
+    private void Awake()
     {
-        bs = new BaseStat();
         starNum = Random.Range(0,12);
         mon = new MonsterStat();
-        myStats = new CharacterStats();
 
         aqua = new Aquarius();
         arie = new Aries();
@@ -52,7 +46,7 @@ public class FireCactus : Enemy
         lib = new Libra();
         pisc = new Pisces();
         sagi = new Sagittarius();
-        scorp = new Scorpio();
+        scrop = new Scorpio();
         serp = new Serpentarius();
         taur = new Taurus();
         virg = new Virgo();
@@ -159,13 +153,13 @@ public class FireCactus : Enemy
         if (starNum == 9)
         {
             myStats.Name = "Fire Cactus";
-            myStats.Force = mon.Force + scorp.Force + MBForce;
-            myStats.Vitality = mon.Vitality + scorp.Vitality + MBVitality;
-            myStats.Agility = mon.Agility + scorp.Agility + MBAgility;
-            myStats.Fortiude = mon.Fortiude + scorp.Fortitude + MBFortitude;
-            myStats.Intellect = mon.Intellect + scorp.Intellect + MBIntellect;
-            myStats.Rationale = mon.Rationale + scorp.Rational + MBRational;
-            myStats.Charisma = mon.Charisma + scorp.Charisma + MBCharima;
+            myStats.Force = mon.Force + scrop.Force + MBForce;
+            myStats.Vitality = mon.Vitality + scrop.Vitality + MBVitality;
+            myStats.Agility = mon.Agility + scrop.Agility + MBAgility;
+            myStats.Fortiude = mon.Fortiude + scrop.Fortitude + MBFortitude;
+            myStats.Intellect = mon.Intellect + scrop.Intellect + MBIntellect;
+            myStats.Rationale = mon.Rationale + scrop.Rational + MBRational;
+            myStats.Charisma = mon.Charisma + scrop.Charisma + MBCharima;
         }
         if (starNum == 10)
         {
@@ -207,12 +201,8 @@ public class FireCactus : Enemy
         myStats.AttackDamage = myStats.Force;
         myStats.AttackSpeed = myStats.Agility;
         myStats.MagicDefence = myStats.Rationale;
-        myStats.AttackBar = 0 / 100;
-
-        myStats.TotalAgility = myStats.Agility;
-
-
-        print("fire speed" + myStats.TotalAgility);
+        myStats.
+                AttackBar = 0 / 100;
 
         //HPthing
         myStats.MaximumHealthPoints = myStats.HealthPoints;
@@ -224,79 +214,6 @@ public class FireCactus : Enemy
         // AP bar increasre by timesing agility by time.deltatime
         // divide delta time * agility by 32 
     }
-    void Update()
-    {
-        if (count == 0)
-        {
-            if (starNum == 0)
-            {
-                myStats.TotalAgility = mon.Agility + aqua.Agility + MBAgility;
-               
-                count++;
-            }
-            if (starNum == 1)
-            {
-                myStats.TotalAgility = mon.Agility + arie.Agility + MBAgility;
-            
-                count++;
-            }
-            if (starNum == 2)
-            {
-                myStats.TotalAgility = mon.Agility + can.Agility + MBAgility;
-                
-                count++;
-            }
-            if (starNum == 3)
-            {
-                myStats.TotalAgility = mon.Agility + cap.Agility + MBAgility;
-               
-                count++;
-            }
-            if (starNum == 4)
-            {
-                myStats.TotalAgility = mon.Agility + gem.Agility + MBAgility;
-                count++;
-            }
-            if (starNum == 5)
-            {
-                myStats.TotalAgility = mon.Agility + leo.Agility + MBAgility;
-                count++;
-            }
-            if (starNum == 6)
-            {
-                myStats.TotalAgility = mon.Agility + lib.Agility + MBAgility;
-                count++;
-            }
-            if (starNum == 7)
-            {
-                myStats.TotalAgility = mon.Agility + pisc.Agility + MBAgility;
-                count++;
-            }
-            if (starNum == 8)
-            {
-                myStats.TotalAgility = mon.Agility + sagi.Agility + MBAgility;
-                count++;
-            }
-            if (starNum == 9)
-            {
-                myStats.TotalAgility = mon.Agility + scorp.Agility + MBAgility;
-                count++;
-            }
-            if (starNum == 10)
-            {
-                myStats.TotalAgility = mon.Agility + serp.Agility + MBAgility;
-                count++;
-            }
-            if (starNum == 11)
-            {
-                myStats.TotalAgility = mon.Agility + taur.Agility + MBAgility;
-                count++;
-            }
-            if (starNum == 12)
-            {
-                myStats.TotalAgility = mon.Agility + virg.Agility + MBAgility;
-                count++;
-            }
-        }
-    }
+
+    
 }

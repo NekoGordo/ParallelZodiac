@@ -11,12 +11,12 @@ public class Ally : BaseCharacterCombat
     //public static string BASIC_TYPE = "Ally";  //TODO:This instead of tags?
     //public static Material WalkZoneMaterial;
     Button btn;
-    Combat_mk2 combat;
+    //Combat combat;
 
 
     private void Start () {
-        combat = GameObject.Find ( "GM" ).GetComponent<Combat_mk2> ();
-        
+        //combat = GameObject.Find ( "GM" ).GetComponent<Combat> ();
+
     }
 
     public void Attack(Enemy enemyToAttack)

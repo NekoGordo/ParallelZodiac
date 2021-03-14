@@ -6,15 +6,39 @@ TagManager:
   tags:
   - NPC
   - Playable
+  - FS
+  - ES
+  - BS
+  - SS
+  - biS
   - Spawn_Ally
   - Spawn_Enemy
   - Spawn_Boss
   - ENEMY
   - ALLY
   - BattleMenu
+  - Inactive
+  - Active
   - Shiro
   - Binx
   - Enemy
+  - Canvas
+  - MainInventory
+  - Panel
+  - Slots
+  - Slot
+  - CraftSystem
+  - Item
+  - DraggingItem
+  - ResultSlot
+  - ItemIcon
+  - Hotbar
+  - EquipmentSystem
+  - MagicMenu
+  - Spell1Slot
+  - Spell2Slot
+  - Spell3Slot
+  - Comp
   - Surface
   layers:
   - Default
