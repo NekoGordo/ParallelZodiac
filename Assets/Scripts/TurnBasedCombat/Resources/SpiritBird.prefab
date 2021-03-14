@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33393116291929834}
   - component: {fileID: 65880379790433952}
   - component: {fileID: 23803741528916574}
+  - component: {fileID: 3276023756870732848}
   m_Layer: 0
   m_Name: SpiritBird
   m_TagString: Enemy
@@ -92,3 +93,28 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3276023756870732848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947557466562204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6054e3aa1051bdf40b4d5cab0c1d1915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myStats: {fileID: 0}
+  CanAct: 0
+  currentPri: {fileID: 0}
+  hasAttacked: 0
+  EnemyAttacked: 0
+  menu: {fileID: 0}
+  MBForce: 8
+  MBVitality: 1
+  MBAgility: 7
+  MBFortitude: 6
+  MBIntellect: 4
+  MBRational: 1
+  MBCharima: 6

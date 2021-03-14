@@ -3,11 +3,13 @@ using System.Linq;
 using UnityEngine;
 using System.Text;
 
-public class Enemy : BaseCharacterCombat
-{
+public class Enemy : BaseCharacterCombat{
+
+    Combat_mk2 combat;
+
     //Combat combat;
     private void Start () {
-    //    combat = GameObject.Find ( "GM" ).GetComponent<Combat> ();
+        combat = GameObject.Find("GM").GetComponent<Combat_mk2>();
     }
 
     public void Attack()

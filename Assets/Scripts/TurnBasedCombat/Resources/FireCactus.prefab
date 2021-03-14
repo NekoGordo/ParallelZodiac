@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33449396953544142}
   - component: {fileID: 65575692038641504}
   - component: {fileID: 23190696658945464}
+  - component: {fileID: 7140399533300671551}
   m_Layer: 0
   m_Name: FireCactus
   m_TagString: Enemy
@@ -92,3 +93,28 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7140399533300671551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567106921446330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d112ab8fd37ca394fb00fd2ecb598fb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myStats: {fileID: 0}
+  CanAct: 0
+  currentPri: {fileID: 0}
+  hasAttacked: 0
+  EnemyAttacked: 0
+  menu: {fileID: 0}
+  MBForce: 18
+  MBVitality: 23
+  MBAgility: 19
+  MBFortitude: 16
+  MBIntellect: 16
+  MBRational: 23
+  MBCharima: 22
