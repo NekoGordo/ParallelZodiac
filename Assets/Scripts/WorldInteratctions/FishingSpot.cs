@@ -16,18 +16,12 @@ public class FishingSpot : MonoBehaviour {
     public bool HasFishingrod;
     public GameObject player;
     public float dis;
+
     void Start () {
         player = GameObject.FindWithTag("Player");
         CNameLength = Common.Length;
         UNameLength = Uncommon.Length;
         ANameLength = Artefacts.Length;
-    }
-
-    void OnTriggerEnter ( Collider other ) {
-        if ( !IsAbleToFish) {
-            Debug.Log ( "entered" );
-            IsAbleToFish = true;
-        }
     }
 
     private void Update()
