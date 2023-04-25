@@ -5,7 +5,6 @@ using UnityEngine;
 public class MineralDragon : Enemy
 {
     //scripts
-    BaseStat bs;
     MonsterStat mon;
     Aquarius aqua;
     Aries arie;
@@ -20,11 +19,6 @@ public class MineralDragon : Enemy
     Serpentarius serp;
     Taurus taur;
     Virgo virg;
-    public CharacterStats myStats;
-
-
-    int starNum;
-
     //stats
     public int MBForce = 30;
     public int MBVitality = 26;
@@ -34,14 +28,11 @@ public class MineralDragon : Enemy
     public int MBRational = 32;
     public int MBCharima = 29;
 
-    int count = 0;
-
-    private void Start()
+    private void Awake()
     {
-        bs = new BaseStat();
-        starNum = Random.Range(0, 12);
+        CreateSignNumber();
+
         mon = new MonsterStat();
-        myStats = new CharacterStats();
 
         aqua = new Aquarius();
         arie = new Aries();
@@ -58,7 +49,7 @@ public class MineralDragon : Enemy
         virg = new Virgo();
 
         //TODO: These should be modifiers in different file. Then, when you give this a sign, it just gets the file with the same string as the sign, removing all but one of the ifs (and removing that if too
-        if (starNum == 0)
+        if (SignNumber == 1)
         {
             myStats.Name = "Mineral Dragon";
             myStats.Force = mon.Force + aqua.Force + MBForce;
@@ -69,7 +60,7 @@ public class MineralDragon : Enemy
             myStats.Rationale = mon.Rationale + aqua.Rational + MBRational;
             myStats.Charisma = mon.Charisma + aqua.Charisma + MBCharima;
         }
-        if (starNum == 1)
+        if (SignNumber == 2)
         {
             myStats.Name = "Mineral Dragon";
             myStats.Force = mon.Force + arie.Force + MBForce;
@@ -80,7 +71,7 @@ public class MineralDragon : Enemy
             myStats.Rationale = mon.Rationale + arie.Rational + MBRational;
             myStats.Charisma = mon.Charisma + arie.Charisma + MBCharima;
         }
-        if (starNum == 2)
+        if (SignNumber == 3)
         {
             myStats.Name = "Mineral Dragon";
             myStats.Force = mon.Force + can.Force + MBForce;
@@ -91,7 +82,7 @@ public class MineralDragon : Enemy
             myStats.Rationale = mon.Rationale + can.Rational + MBRational;
             myStats.Charisma = mon.Charisma + can.Charisma + MBCharima;
         }
-        if (starNum == 3)
+        if (SignNumber == 4)
         {
             myStats.Name = "Mineral Dragon";
             myStats.Force = mon.Force + cap.Force + MBForce;
@@ -102,7 +93,7 @@ public class MineralDragon : Enemy
             myStats.Rationale = mon.Rationale + cap.Rational + MBRational;
             myStats.Charisma = mon.Charisma + cap.Charisma + MBCharima;
         }
-        if (starNum == 4)
+        if (SignNumber == 5)
         {
             myStats.Name = "Mineral Dragon";
             myStats.Force = mon.Force + gem.Force + MBForce;
@@ -113,7 +104,7 @@ public class MineralDragon : Enemy
             myStats.Rationale = mon.Rationale + gem.Rational + MBRational;
             myStats.Charisma = mon.Charisma + gem.Charisma + MBCharima;
         }
-        if (starNum == 5)
+        if (SignNumber == 6)
         {
             myStats.Name = "Mineral Dragon";
             myStats.Force = mon.Force + leo.Force + MBForce;
@@ -124,7 +115,7 @@ public class MineralDragon : Enemy
             myStats.Rationale = mon.Rationale + leo.Rational + MBRational;
             myStats.Charisma = mon.Charisma + leo.Charisma + MBCharima;
         }
-        if (starNum == 6)
+        if (SignNumber == 7)
         {
             myStats.Name = "Mineral Dragon";
             myStats.Force = mon.Force + lib.Force + MBForce;
@@ -135,7 +126,7 @@ public class MineralDragon : Enemy
             myStats.Rationale = mon.Rationale + lib.Rational + MBRational;
             myStats.Charisma = mon.Charisma + lib.Charisma + MBCharima;
         }
-        if (starNum == 7)
+        if (SignNumber == 8)
         {
             myStats.Name = "Mineral Dragon";
             myStats.Force = mon.Force + pisc.Force + MBForce;
@@ -146,7 +137,7 @@ public class MineralDragon : Enemy
             myStats.Rationale = mon.Rationale + pisc.Rational + MBRational;
             myStats.Charisma = mon.Charisma + pisc.Charisma + MBCharima;
         }
-        if (starNum == 8)
+        if (SignNumber == 9)
         {
             myStats.Name = "Mineral Dragon";
             myStats.Force = mon.Force + sagi.Force + MBForce;
@@ -157,7 +148,7 @@ public class MineralDragon : Enemy
             myStats.Rationale = mon.Rationale + sagi.Rational + MBRational;
             myStats.Charisma = mon.Charisma + sagi.Charisma + MBCharima;
         }
-        if (starNum == 9)
+        if (SignNumber == 10)
         {
             myStats.Name = "Mineral Dragon";
             myStats.Force = mon.Force + scrop.Force + MBForce;
@@ -168,7 +159,7 @@ public class MineralDragon : Enemy
             myStats.Rationale = mon.Rationale + scrop.Rational + MBRational;
             myStats.Charisma = mon.Charisma + scrop.Charisma + MBCharima;
         }
-        if (starNum == 10)
+        if (SignNumber == 11)
         {
             myStats.Name = "Mineral Dragon";
             myStats.Force = mon.Force + serp.Force + MBForce;
@@ -179,7 +170,7 @@ public class MineralDragon : Enemy
             myStats.Rationale = mon.Rationale + serp.Rational + MBRational;
             myStats.Charisma = mon.Charisma + serp.Charisma + MBCharima;
         }
-        if (starNum == 11)
+        if (SignNumber == 12)
         {
             myStats.Name = "Mineral Dragon";
             myStats.Force = mon.Force + taur.Force + MBForce;
@@ -190,7 +181,7 @@ public class MineralDragon : Enemy
             myStats.Rationale = mon.Rationale + taur.Rational + MBRational;
             myStats.Charisma = mon.Charisma + taur.Charisma + MBCharima;
         }
-        if (starNum == 12)
+        if (SignNumber == 13)
         {
             myStats.Name = "Mineral Dragon";
             myStats.Force = mon.Force + virg.Force + MBForce;
@@ -202,8 +193,6 @@ public class MineralDragon : Enemy
             myStats.Charisma = mon.Charisma + virg.Charisma + MBCharima;
         }
 
-        myStats.TotalAgility = myStats.Agility;
-
         myStats.HealthPoints = (myStats.Vitality + myStats.Fortiude) / 2;
         myStats.AbilityPoints = (myStats.Force + myStats.Intellect) / 2;
         myStats.Defence = myStats.Vitality;
@@ -211,9 +200,8 @@ public class MineralDragon : Enemy
         myStats.AttackSpeed = myStats.Agility;
         myStats.MagicDefence = myStats.Rationale;
 
-        print("mineral speed" + myStats.TotalAgility);
-
         myStats.AttackBar = 0 / 100;
+
         //HPthing
         myStats.MaximumHealthPoints = myStats.HealthPoints;
         myStats.HealthPoints = myStats.MaximumHealthPoints;
@@ -223,5 +211,10 @@ public class MineralDragon : Enemy
 
         // AP bar increasre by timesing agility by time.deltatime
         // divide delta time * agility by 32 
+    }
+
+    public MineralDragon()
+    {
+
     }
 }

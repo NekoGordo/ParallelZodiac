@@ -24,7 +24,7 @@ public class Npc_Tutorial_Combat : MonoBehaviour {
         if ( ObjDist < 2.5 ) {
             if ( Input.GetKeyDown ( KeyCode.C ) ) {
                 Debug.Log ( "hi there my name is "+ npc.npcname + "\n i am going to take you to the combat field now" + "\n good luck");
-               // StartCoroutine ( GoNext ());
+                StartCoroutine ( GoNext ());
             }
         } else if ( ObjDist > 2.6 ) {
             return;
@@ -33,7 +33,7 @@ public class Npc_Tutorial_Combat : MonoBehaviour {
 
      IEnumerator GoNext () {
         yield return new WaitForSeconds ( time );
-        // add combatenter
+        gd.GetComponent<Combat>().CombatEnter();
     }
 
     }

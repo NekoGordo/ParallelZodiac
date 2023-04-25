@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ThiefStat : BaseStat {
 
-	public void TThiefStatief(){
+	public void Thief(){
 		ClassName = "Thief";
 		Force = 5;
 		Vitality = 14;
@@ -14,4 +14,7 @@ public class ThiefStat : BaseStat {
 		Rationale = 18;
 		Charisma = 8;
 	}
+    public ThiefStat () {
+        Thief ();
+    }
 }

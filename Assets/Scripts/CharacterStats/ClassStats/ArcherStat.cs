@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArcherStat : BaseStat{
 
-	public ArcherStat(){
+	public void Archer(){
 		ClassName = "Archer";
 		Force = 15;
 		Vitality = 18;
@@ -14,4 +14,9 @@ public class ArcherStat : BaseStat{
 		Rationale = 25;
 		Charisma = 15;
 	}
+
+    public ArcherStat () {
+        Archer ();
+
+    }
 }

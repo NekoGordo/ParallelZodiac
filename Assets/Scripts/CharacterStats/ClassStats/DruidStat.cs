@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DruidStat : BaseStat {
 	
-	public  DruidStat(){
+	public void Druid(){
 		ClassName = "Druid";
 		Force = 25;
 		Vitality = 25;
@@ -14,4 +14,7 @@ public class DruidStat : BaseStat {
 		Rationale = 25;
 		Charisma = 25;
 	}
+    public DruidStat () {
+        Druid ();
+    }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ElementalistStat : BaseStat {
 
-	public ElementalistStat(){
+	public void Elementalist(){
 		ClassName = "Elementalist";
 		Force = 8;
 		Vitality = 12;
@@ -14,4 +14,7 @@ public class ElementalistStat : BaseStat {
 		Rationale = 26;
 		Charisma = 16;
 	}
+    public ElementalistStat () {
+        Elementalist ();
+    }
 }

@@ -5,9 +5,6 @@ using UnityEngine;
 public class SquidTurtle : Enemy {
     //scripts
     MonsterStat mon;
-    BaseStat bs;
-    public CharacterStats myStats;
-
     //mods
     public int HPMod = 150;
     public int ADMod = 50;
@@ -23,10 +20,12 @@ public class SquidTurtle : Enemy {
     public int MBRational = 32;
     public int MBCharima = 29;
 
-    private void Start()
+    private void Awake()
     {
+        CreateSignNumber();
+
         mon = new MonsterStat();
-        myStats = new CharacterStats();
+
         myStats.Name = "SquidTurtle";
         myStats.Force = mon.Force + MBForce;
         myStats.Vitality = mon.Vitality + MBVitality;
@@ -35,7 +34,6 @@ public class SquidTurtle : Enemy {
         myStats.Intellect = mon.Intellect + MBIntellect;
         myStats.Rationale = mon.Rationale + MBRational;
         myStats.Charisma = mon.Charisma + MBCharima;
-       
 
         myStats.HealthPoints = (myStats.Vitality + myStats.Fortiude + HPMod) / 2;
         myStats.AbilityPoints = (myStats.Force + myStats.Intellect + APMod) / 2;
@@ -46,10 +44,6 @@ public class SquidTurtle : Enemy {
 
         myStats.AttackBar = 0 / 100;
 
-        myStats.TotalAgility = myStats.Agility;
-
-        print("squid speed" + myStats.TotalAgility);
-
         //HPthing
         myStats.MaximumHealthPoints = myStats.HealthPoints;
         myStats.HealthPoints = myStats.MaximumHealthPoints;
@@ -59,5 +53,9 @@ public class SquidTurtle : Enemy {
 
         // AP bar increasre by timesing agility by time.deltatime
         // divide delta time * agility by 32 
+    }
+
+    public SquidTurtle () {
+        
     }
 }

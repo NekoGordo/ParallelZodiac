@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SummonerStat : BaseStat {
 
-	public SummonerStat(){
+	public void Summoner(){
 		ClassName = "Summoner";
 		Force = 5;
 		Vitality = 15;
@@ -14,4 +14,7 @@ public class SummonerStat : BaseStat {
 		Rationale = 27;
 		Charisma = 15;
 	}
+    public SummonerStat () {
+        Summoner ();
+    }
 }

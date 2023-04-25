@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterStat : BaseStat {
 
-	public MonsterStat(){//non human
+	public void Monster(){//non human
 		ClassName = "Monster";
 		Force = 32;
 		Vitality = 32;
@@ -14,4 +14,7 @@ public class MonsterStat : BaseStat {
 		Rationale = 32;
 		Charisma = 32;
 	}
+    public MonsterStat () {
+        Monster ();
+    }
 }

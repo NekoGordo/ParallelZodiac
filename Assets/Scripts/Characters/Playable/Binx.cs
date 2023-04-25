@@ -7,8 +7,6 @@ public class Binx : Ally {
     Capricorn cap;
     ShapeshifterStats shapeshifter;
 
-    public CharacterStats myStats;
-
     public int CBForce = 18;
     public int CBVitality = 30;
     public int CBAgility = 22;
@@ -17,14 +15,10 @@ public class Binx : Ally {
     public int CBRational = 26;
     public int CBCharima = 18;
 
-    int count;
-
-    private void Start()
+    private void Awake()
     {
         cap = new Capricorn();
         shapeshifter = new ShapeshifterStats();
-
-        myStats = new CharacterStats();
         myStats.Name = "Binx";
         myStats.Force = shapeshifter.Force + cap.Force + CBForce;
         myStats.Vitality = shapeshifter.Vitality + cap.Vitality + CBVitality;
@@ -51,16 +45,9 @@ public class Binx : Ally {
         // AP bar increasre by timesing agility by time.deltatime
         // divide delta time * agility by 32 
     }
-    void Update()
-    {
-        if (count == 0)
-        {
-            myStats.TotalAgility= cap.Agility + CBAgility;
-            print("binx speed" + myStats.TotalAgility);
 
-            count++;
-        }
-        else if (count == 1)
-            return;
+    public Binx()
+    {
+        
     }
 }

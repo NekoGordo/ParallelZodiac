@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DissenterStat : BaseStat {
 	
-	public DissenterStat(){
+	public void Dissenter(){
 		ClassName = "Dissenter";
 		Force = 20;
 		Vitality = 20;
@@ -13,4 +13,7 @@ public class DissenterStat : BaseStat {
 		Rationale = 32;
 		Charisma = 20;
 	}
+    public DissenterStat () {
+        Dissenter ();
+    }
 }

@@ -3,20 +3,41 @@ using System.Linq;
 using UnityEngine;
 using System.Text;
 
-public class Enemy : BaseCharacterCombat{
-
-    Combat_mk2 combat;
-
-    //Combat combat;
+public class Enemy : BaseCharacter
+{
+    protected int SignNumber = 0; //TODO: Move to base?
+    Combat combat;
     private void Start () {
-        combat = GameObject.Find("GM").GetComponent<Combat_mk2>();
+        combat = GameObject.Find ( "GM" ).GetComponent<Combat> ();
+    }
+    public override void ReceivPriority()
+    {
+        Attack();
+        CanAct = false;
+        myStats.AttackBar = 0f;
+
+        return;
     }
 
     public void Attack()
     {
-        //remake this code
+        if(combat.CharacterWithPriority == -1 ) {
+            return;
+        }
+        if (hasAttacked)
+        {
+          //TODO figure out how to find the correct player to attack. 
+        }
+        //TODO: That code
     }
 
     public void EnemyTakeDamage () {
+    if ( EnemyAttacked )
+        TakeDamage ( ( int ) myStats.AttackDamage );
+    }
+
+    protected void CreateSignNumber()
+    {
+        SignNumber = Random.Range(1, 14);
     }
 }

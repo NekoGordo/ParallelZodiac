@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MarksmanStat : BaseStat {
 	
-	public MarksmanStat(){
+	public void Marksman(){
 		ClassName = "Marksman";
 		Force = 24;
 		Vitality = 13;
@@ -14,4 +14,7 @@ public class MarksmanStat : BaseStat {
 		Rationale = 19;
 		Charisma = 30;
 	}
+    public MarksmanStat () {
+        Marksman ();
+    }
 }

@@ -14,6 +14,4 @@ public class BaseStat {
 	public int Rationale { get; set; } // magical defence and is used in stamina combined with half Vitality and quater Fortiude / Rationale
 	public int Charisma { get; set; } // has effects on spells and OW effects
 
-	public int TotalAgility { get; set; } //get the total agility
-
 }
